@@ -24,9 +24,9 @@ public class DateFieldConverter implements FieldConverter<DateFieldDto> {
         values.put("name", treeNode.get("name").toString().replaceAll("\"", ""));
         values.put("id", treeNode.get("id").toString().replaceAll("\"", ""));
 
-        long milliseconds = Long.parseLong(treeNode.get("value").toString().replaceAll("\"", ""));
+        String milliseconds = treeNode.get("value").toString().replaceAll("\"", "");
 
-        values.put("value", Constants.SIMPLE_DATE_FORMAT.format(new Date(milliseconds)));
+        values.put("value", milliseconds);
 
 
         return (DateFieldDto) CustomFieldFactoryProvider.createCustomField(TYPE, values);
