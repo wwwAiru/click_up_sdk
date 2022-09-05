@@ -16,4 +16,12 @@ public class AttachmentFieldDto extends AbstractField<List<AttachmentDto>> {
     public FieldType getType() {
         return FieldType.ATTACHMENT;
     }
+
+    public String getUrl() {
+        return getValue()
+                .stream()
+                .findFirst()
+                .orElseThrow()
+                .getUrl();
+    }
 }
