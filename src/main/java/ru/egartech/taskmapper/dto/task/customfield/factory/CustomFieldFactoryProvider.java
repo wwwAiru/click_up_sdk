@@ -5,6 +5,7 @@ import ru.egartech.taskmapper.dto.task.customfield.FieldType;
 import ru.egartech.taskmapper.dto.task.customfield.field.attachment.AttachmentDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.dropdown.DropdownOption;
 import ru.egartech.taskmapper.dto.task.customfield.field.label.LabelOptionDto;
+import ru.egartech.taskmapper.dto.task.customfield.field.relationship.RelationShipValueDto;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class CustomFieldFactoryProvider {
             case UNKNOWN:
                 return new UnknownFieldFactory().createField(id, name, (String) value);
             case LIST_RELATIONSHIP:
-                return new ListRelationShipFieldFactory().createField(id, name, (String) value);
+                return new ListRelationShipFieldFactory().createField(id, name, (List<RelationShipValueDto>) value);
             case DROP_DOWN:
                 return new DropdownFieldFactory().createField(id, name, (DropdownOption) value);
             case LABELS:
