@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.egartech.taskmapper.dto.task.assigner.AssignerDto;
 import ru.egartech.taskmapper.dto.task.customfield.CustomField;
 import ru.egartech.taskmapper.dto.task.customfield.deserializer.CustomFieldStdConverter;
 import ru.egartech.taskmapper.exception.CustomFieldNotFoundException;
@@ -27,6 +28,9 @@ public class TaskDto {
 
     @JsonProperty("subtasks")
     private List<TaskDto> subtasks = List.of();
+
+    @JsonProperty("assignees")
+    private List<AssignerDto> assigners;
 
     @JsonProperty("custom_fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
