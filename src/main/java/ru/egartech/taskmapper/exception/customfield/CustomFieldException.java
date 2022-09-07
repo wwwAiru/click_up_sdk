@@ -1,6 +1,8 @@
 package ru.egartech.taskmapper.exception.customfield;
 
-public class CustomFieldException extends RuntimeException {
+import ru.egartech.taskmapper.exception.ApplicationException;
+
+public class CustomFieldException extends ApplicationException {
 
     public CustomFieldException() {
         super();
