@@ -1,7 +1,6 @@
 package ru.egartech.taskmapper.dto.task.customfield.field.relationship;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,10 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@JsonDeserialize(converter = RelationShipFieldConverter.class)
 public class RelationShipFieldDto extends CustomField<List<RelationShipValueDto>> {
 
-    @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "type_config")
     private RelationShipTypeConfig relationShipTypeConfig;
 
 }

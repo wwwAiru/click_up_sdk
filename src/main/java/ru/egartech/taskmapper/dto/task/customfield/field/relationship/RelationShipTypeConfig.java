@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RelationShipTypeConfig {
 
-    @JsonProperty(value = "subcategory_id", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "subcategory_id")
     private String subcategoryId;
 
 }
