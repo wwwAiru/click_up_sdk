@@ -35,7 +35,6 @@ import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
 @AllArgsConstructor
 public abstract class AbstractField<T> {
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     protected String id;
 
     protected String name;
