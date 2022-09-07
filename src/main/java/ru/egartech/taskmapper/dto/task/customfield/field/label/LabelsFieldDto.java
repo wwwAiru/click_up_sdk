@@ -21,7 +21,7 @@ import java.util.List;
 @JsonDeserialize(converter = LabelFieldConverter.class)
 public class LabelsFieldDto extends CustomField<List<LabelOptionDto>> {
 
-    @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "type_config")
     private LabelTypeConfig labelTypeConfig;
 
 }
