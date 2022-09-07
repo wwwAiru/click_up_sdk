@@ -1,5 +1,6 @@
 package ru.egartech.taskmapper.dto.task.customfield.field.dropdown;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,16 @@ public class DropdownOption {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Integer value;
 
+    /**
+     * Конструктор нужен для создания из строки в объект LabelOptionDto, когда присутствует только поле value.
+     * Используется как дженерик тип в {@link DropdownFieldDto}.
+     * Используется в списке из опций {@link DropdownTypeConfig}.
+     *
+     * @param value номер индекса в списке опций в typeConfig
+     * @see DropdownFieldDto
+     * @see DropdownTypeConfig
+     */
+    @JsonCreator
     public DropdownOption(int value) {
         this.value = value;
     }

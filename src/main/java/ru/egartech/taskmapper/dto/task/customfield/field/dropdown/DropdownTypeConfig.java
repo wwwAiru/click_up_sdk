@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class DropdownTypeConfig {
 
     public DropdownOption byOrderIndex(Integer orderIndex) {
         return labelOptions.stream()
-                .filter(o -> o.getOrderIndex() == orderIndex)
+                .filter(o -> Objects.equals(o.getOrderIndex(), orderIndex))
                 .findFirst()
                 .orElseThrow();
     }

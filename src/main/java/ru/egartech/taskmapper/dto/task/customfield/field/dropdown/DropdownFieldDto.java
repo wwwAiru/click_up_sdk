@@ -17,7 +17,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 @JsonDeserialize(converter = DropdownFieldConverter.class)
 public class DropdownFieldDto extends CustomField<DropdownOption> {
 
-    @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "type_config")
     private DropdownTypeConfig dropdownTypeConfig;
 
 }
