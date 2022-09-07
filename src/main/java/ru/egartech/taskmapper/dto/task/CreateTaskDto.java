@@ -1,9 +1,10 @@
 package ru.egartech.taskmapper.dto.task;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
-import ru.egartech.taskmapper.dto.task.customfield.CustomField;
 
 import java.util.List;
 
