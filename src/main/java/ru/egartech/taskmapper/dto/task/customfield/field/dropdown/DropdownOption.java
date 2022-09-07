@@ -21,7 +21,7 @@ public class DropdownOption {
     private int orderIndex;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Integer value;
+    private int value;
 
     /**
      * Конструктор нужен для создания из строки в объект LabelOptionDto, когда присутствует только поле value.
@@ -32,8 +32,8 @@ public class DropdownOption {
      * @see DropdownFieldDto
      * @see DropdownTypeConfig
      */
-    @JsonCreator
-    public DropdownOption(int value) {
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public DropdownOption(@JsonProperty("value")int value) {
         this.value = value;
     }
 

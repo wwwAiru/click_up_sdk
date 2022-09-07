@@ -26,7 +26,7 @@ public class LabelOptionDto {
      * @see LabelsFieldDto
      * @param id идентификатор в виде строки
      */
-    @JsonCreator
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public LabelOptionDto(String id) {
         this.id = id;
     }
