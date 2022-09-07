@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
+import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class AttachmentFieldDto extends AbstractField<List<AttachmentDto>> {
+public class AttachmentFieldDto extends CustomField<List<AttachmentDto>> {
     @JsonIgnore
     public String getUrl() {
         return getValue()

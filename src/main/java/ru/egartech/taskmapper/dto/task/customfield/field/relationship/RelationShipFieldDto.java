@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
+import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @JsonDeserialize(converter = RelationShipFieldConverter.class)
-public class RelationShipFieldDto extends AbstractField<List<RelationShipValueDto>> {
+public class RelationShipFieldDto extends CustomField<List<RelationShipValueDto>> {
 
     @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
     private RelationShipTypeConfig relationShipTypeConfig;

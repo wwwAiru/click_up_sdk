@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
+import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(converter = LabelFieldConverter.class)
-public class LabelsFieldDto extends AbstractField<List<LabelOptionDto>> {
+public class LabelsFieldDto extends CustomField<List<LabelOptionDto>> {
 
     @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
     private LabelTypeConfig labelTypeConfig;

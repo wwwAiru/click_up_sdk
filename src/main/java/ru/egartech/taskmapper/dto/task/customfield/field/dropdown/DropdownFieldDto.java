@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
+import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 @Data
 @SuperBuilder
@@ -15,7 +15,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @JsonDeserialize(converter = DropdownFieldConverter.class)
-public class DropdownFieldDto extends AbstractField<DropdownOption> {
+public class DropdownFieldDto extends CustomField<DropdownOption> {
 
     @JsonProperty(value = "type_config", access = JsonProperty.Access.WRITE_ONLY)
     private DropdownTypeConfig dropdownTypeConfig;

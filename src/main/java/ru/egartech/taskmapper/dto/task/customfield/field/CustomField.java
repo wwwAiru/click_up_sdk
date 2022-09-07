@@ -1,7 +1,6 @@
 package ru.egartech.taskmapper.dto.task.customfield.field;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
@@ -33,7 +32,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class AbstractField<T> {
+public abstract class CustomField<T> {
 
     protected String id;
 
