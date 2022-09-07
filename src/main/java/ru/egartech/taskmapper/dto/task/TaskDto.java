@@ -6,8 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.egartech.taskmapper.dto.task.customfield.CustomField;
+import ru.egartech.taskmapper.dto.task.assigner.AssignerDto;
 import ru.egartech.taskmapper.dto.task.customfield.deserializer.CustomFieldStdConverter;
+import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
 import ru.egartech.taskmapper.exception.CustomFieldNotFoundException;
 
 import java.util.List;
@@ -28,12 +29,15 @@ public class TaskDto {
     @JsonProperty("subtasks")
     private List<TaskDto> subtasks = List.of();
 
+    @JsonProperty("assignees")
+    private List<AssignerDto> assigners;
+
     @JsonProperty("custom_fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
-    private Map<String, CustomField<?>> customFields;
+    private Map<String, AbstractField<Object>> customFields;
 
-    public <T extends CustomField<?>> T customField(String id) {
-        CustomField<?> customField = customFields.get(id);
+    public <T extends AbstractField<Object>> T customField(String id) {
+        AbstractField<Object> customField = customFields.get(id);
 
         if (customField == null) throw new CustomFieldNotFoundException(id);
 

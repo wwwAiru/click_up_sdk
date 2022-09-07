@@ -1,4 +1,4 @@
-package ru.egartech.taskmapper.dto.task.customfield.field.label;
+package ru.egartech.taskmapper.dto.task.assigner;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -7,17 +7,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LabelOptionDto {
+public class AssignerDto {
 
     private String id;
-    private String label;
 
-    public LabelOptionDto(String id) {
-        this.id = id;
-    }
+    private String username;
+
+    private String email;
 
 }
+
