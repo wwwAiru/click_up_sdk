@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
+import ru.egartech.taskmapper.exception.CustomFieldValueNotFoundException;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class AttachmentFieldDto extends CustomField<List<AttachmentDto>> {
         return getValue()
                 .stream()
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(CustomFieldValueNotFoundException::new)
                 .getUrl();
     }
 }

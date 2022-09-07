@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.egartech.taskmapper.exception.CustomFieldValueNotFoundException;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class LabelTypeConfig {
         return labelOptionDtos.stream()
                 .filter(o -> o.getId().equals(id))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(CustomFieldValueNotFoundException::new);
     }
 
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.egartech.taskmapper.exception.CustomFieldValueNotFoundException;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class DropdownTypeConfig {
         return labelOptions.stream()
                 .filter(o -> Objects.equals(o.getOrderIndex(), orderIndex))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(CustomFieldValueNotFoundException::new);
     }
 
 }
