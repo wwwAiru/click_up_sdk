@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import ru.egartech.taskmapper.dto.task.assigner.AssignerDto;
 import ru.egartech.taskmapper.dto.task.customfield.deserializer.CustomFieldStdConverter;
 import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
-import ru.egartech.taskmapper.exception.CustomFieldNotFoundException;
+import ru.egartech.taskmapper.exception.customfield.CustomFieldNotFoundException;
 
 import java.util.List;
 import java.util.Map;

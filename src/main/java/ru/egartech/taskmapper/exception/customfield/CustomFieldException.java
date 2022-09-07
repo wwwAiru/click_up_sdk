@@ -1,4 +1,4 @@
-package ru.egartech.taskmapper.exception;
+package ru.egartech.taskmapper.exception.customfield;
 
 public class CustomFieldException extends RuntimeException {
 

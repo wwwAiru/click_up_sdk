@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
-import ru.egartech.taskmapper.exception.CustomFieldValueNotFoundException;
+import ru.egartech.taskmapper.exception.customfield.CustomFieldValueNotFoundException;
 
 import java.util.List;
 
