@@ -1,17 +1,14 @@
 package ru.egartech.taskmapper.dto.task.customfield.field.phone;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import ru.egartech.taskmapper.dto.task.customfield.FieldType;
-import ru.egartech.taskmapper.dto.task.customfield.field.AbstractField;
+import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
 
 @Data
 @SuperBuilder
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class PhoneFieldDto extends AbstractField<String> {
-    @Override
-    public FieldType getType() {
-        return FieldType.PHONE;
-    }
+public class PhoneFieldDto extends TextFieldDto {
 }

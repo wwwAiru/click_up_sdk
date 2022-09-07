@@ -2,19 +2,15 @@ package ru.egartech.taskmapper.dto.task.customfield.field.relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@Builder
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RelationShipTypeConfig {
 
-    @JsonProperty("subcategory_id")
+    @JsonProperty(value = "subcategory_id", access = JsonProperty.Access.WRITE_ONLY)
     private String subcategoryId;
 
 }

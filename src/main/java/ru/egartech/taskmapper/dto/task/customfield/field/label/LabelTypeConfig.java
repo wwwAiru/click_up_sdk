@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LabelTypeConfig {
 
@@ -20,6 +21,10 @@ public class LabelTypeConfig {
     private List<LabelOptionDto> labelOptionDtos;
 
     public LabelOptionDto byLabelId(String id) {
-        return labelOptionDtos.stream().filter(o -> o.getId().equals(id)).findFirst().orElseThrow();
+        return labelOptionDtos.stream()
+                .filter(o -> o.getId().equals(id))
+                .findFirst()
+                .orElseThrow();
     }
+
 }

@@ -20,6 +20,10 @@ public class DropdownTypeConfig {
     private List<DropdownOption> labelOptions;
 
     public DropdownOption byOrderIndex(Integer orderIndex) {
-        return labelOptions.stream().filter(o -> o.getOrderIndex() == orderIndex).findFirst().orElseThrow();
+        return labelOptions.stream()
+                .filter(o -> o.getOrderIndex() == orderIndex)
+                .findFirst()
+                .orElseThrow();
     }
+
 }
