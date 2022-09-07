@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-@RequiredArgsConstructor
+@RequiredArgsConstructor(staticName = "of")
 public class CreateTaskDto extends RequestTaskDto {
 
     @NonNull
@@ -20,5 +20,4 @@ public class CreateTaskDto extends RequestTaskDto {
 
     @JsonProperty("custom_fields")
     private List<CreateFieldDto> customFields;
-
 }
