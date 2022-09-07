@@ -34,10 +34,10 @@ public class TaskDto {
 
     @JsonProperty("custom_fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
-    private Map<String, CustomField<Object>> customFields;
+    private Map<String, CustomField<?>> customFields;
 
-    public <T extends CustomField<Object>> T customField(String id) {
-        CustomField<Object> customField = customFields.get(id);
+    public <T extends CustomField<?>> T customField(String id) {
+        CustomField<?> customField = customFields.get(id);
 
         if (customField == null) throw new CustomFieldNotFoundException(id);
 
