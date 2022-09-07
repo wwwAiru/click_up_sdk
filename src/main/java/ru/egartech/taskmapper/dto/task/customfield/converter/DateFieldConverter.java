@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 import ru.egartech.taskmapper.dto.task.customfield.FieldType;
 import ru.egartech.taskmapper.dto.task.customfield.factory.CustomFieldFactoryProvider;
 import ru.egartech.taskmapper.dto.task.customfield.field.date.DateFieldDto;
-import ru.egartech.taskmapper.dto.task.customfield.util.Constants;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -14,10 +14,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LabelsFieldDto extends AbstractField<List<LabelOptionDto>> {
-
     @Override
     public FieldType getType() {
         return FieldType.LABELS;
     }
-
 }
