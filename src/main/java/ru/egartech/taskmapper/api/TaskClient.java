@@ -6,7 +6,7 @@ public interface TaskClient {
 
     TaskDto getTaskById(String id, Boolean hasIncludeSubtasks);
 
-    <T> TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<T>... customFieldsRequest);
+    TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<?>... customFieldsRequest);
 
     TaskDto createTask(int listId, RequestTaskDto createTaskDto);
 

@@ -35,10 +35,9 @@ public class TaskClientImpl implements TaskClient {
                 uriVariables);
     }
 
-    @SafeVarargs
     @SneakyThrows
     @Override
-    public final <T> TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<T>... customFieldsRequest) {
+    public final TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<?>... customFieldsRequest) {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("list_id", listId);
