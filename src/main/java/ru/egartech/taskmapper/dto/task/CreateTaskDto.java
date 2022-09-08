@@ -1,7 +1,6 @@
 package ru.egartech.taskmapper.dto.task;
 
 import lombok.Data;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -10,10 +9,7 @@ import lombok.experimental.Accessors;
 @RequiredArgsConstructor(staticName = "of")
 public class CreateTaskDto extends RequestTaskDto {
 
-    @NonNull
-    private final String id;
-
-    @NonNull
     private final String name;
+    private final String id;
 
 }

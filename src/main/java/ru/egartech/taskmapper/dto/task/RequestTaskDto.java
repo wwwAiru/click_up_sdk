@@ -22,4 +22,6 @@ public abstract class RequestTaskDto {
     @JsonProperty("custom_fields")
     private List<BindFieldDto> customFields = new ArrayList<>();
 
+    public abstract String getId();
+
 }

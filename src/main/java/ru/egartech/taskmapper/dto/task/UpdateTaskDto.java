@@ -14,6 +14,8 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class UpdateTaskDto extends RequestTaskDto {
 
+    private final String id;
+
     @JsonProperty("custom_id")
     private String customId;
 

@@ -5,9 +5,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.taskmapper.dto.task.*;
+import ru.egartech.taskmapper.dto.task.BindFieldDto;
+import ru.egartech.taskmapper.dto.task.RequestTaskDto;
+import ru.egartech.taskmapper.dto.task.TaskDto;
+import ru.egartech.taskmapper.dto.task.TasksDto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -61,8 +65,40 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public TaskDto updateTask(RequestTaskDto updateTaskDto) {
-        return null;
+    public TaskDto updateTask(RequestTaskDto task) {
+        updateTaskWithoutCustomFields(task);
+        updateAllCustomFieldsDto(task.getId(), task.getCustomFields());
+
+        return getTaskById(task.getId(), false);
     }
 
+    private void updateTaskWithoutCustomFields(RequestTaskDto dto) {
+        Map<String, Object> uriVariables = new HashMap<>();
+
+        uriVariables.put("id", dto.getId());
+
+        restTemplate.put(
+                UrlProvider.UPDATE_TASK.getUrl(),
+                dto,
+                uriVariables
+        );
+    }
+
+    private void updateAllCustomFieldsDto(String taskId, List<BindFieldDto> fields) {
+        fields.forEach(field -> updateCustomField(taskId, field));
+    }
+
+    private void updateCustomField(String taskId, BindFieldDto field) {
+        Map<String, Object> uriVariables = new HashMap<>();
+
+        uriVariables.put("id", taskId);
+        uriVariables.put("field_id", field.getId());
+
+        restTemplate.postForObject(
+                UrlProvider.UPDATE_CUSTOM_FIELD.getUrl(),
+                field,
+                Object.class,
+                uriVariables
+        );
+    }
 }
