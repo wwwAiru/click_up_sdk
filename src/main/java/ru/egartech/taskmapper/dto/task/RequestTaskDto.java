@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import ru.egartech.taskmapper.dto.task.status.Status;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -15,5 +18,8 @@ public abstract class RequestTaskDto {
     private String textContent;
     private String description;
     private Status status;
+
+    @JsonProperty("custom_fields")
+    private List<BindFieldDto> customFields = new ArrayList<>();
 
 }

@@ -1,12 +1,9 @@
 package ru.egartech.taskmapper.dto.task;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -19,6 +16,4 @@ public class CreateTaskDto extends RequestTaskDto {
     @NonNull
     private final String name;
 
-    @JsonProperty("custom_fields")
-    private List<BindFieldDto> customFields;
 }
