@@ -1,9 +1,6 @@
 package ru.egartech.taskmapper.api;
 
-import ru.egartech.taskmapper.dto.task.CreateTaskDto;
-import ru.egartech.taskmapper.dto.task.TaskDto;
-import ru.egartech.taskmapper.dto.task.TasksDto;
-import ru.egartech.taskmapper.dto.task.UpdateTaskDto;
+import ru.egartech.taskmapper.dto.task.*;
 
 public interface TaskClient {
 
@@ -11,8 +8,8 @@ public interface TaskClient {
 
     <T> TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<T>... customFieldsRequest);
 
-    TaskDto createTask(int listId, CreateTaskDto createTaskDto);
+    TaskDto createTask(int listId, RequestTaskDto createTaskDto);
 
-    TaskDto updateTask(UpdateTaskDto updateTaskDto);
+    TaskDto updateTask(RequestTaskDto updateTaskDto);
 
 }
