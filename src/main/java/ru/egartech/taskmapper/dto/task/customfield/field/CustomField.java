@@ -11,7 +11,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.attachment.AttachmentFi
 import ru.egartech.taskmapper.dto.task.customfield.field.dropdown.DropdownFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.label.LabelsFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.number.NumberFieldDto;
-import ru.egartech.taskmapper.dto.task.customfield.field.relationship.RelationShipFieldDto;
+import ru.egartech.taskmapper.dto.task.customfield.field.relationship.RelationshipFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -24,7 +24,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
         @JsonSubTypes.Type(value = LabelsFieldDto.class, name = "labels"),
         @JsonSubTypes.Type(value = NumberFieldDto.class, name = "number"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "phone"),
-        @JsonSubTypes.Type(value = RelationShipFieldDto.class, name = "list_relationship"),
+        @JsonSubTypes.Type(value = RelationshipFieldDto.class, name = "list_relationship"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "short_text"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "url"),
 })

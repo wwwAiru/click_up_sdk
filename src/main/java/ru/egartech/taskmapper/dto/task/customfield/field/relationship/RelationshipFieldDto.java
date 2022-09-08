@@ -15,9 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class RelationShipFieldDto extends CustomField<List<RelationShipValueDto>> {
+public class RelationshipFieldDto extends CustomField<List<RelationshipValueDto>> {
 
     @JsonProperty(value = "type_config")
-    private RelationShipTypeConfig relationShipTypeConfig;
+    private RelationshipTypeConfig relationShipTypeConfig;
 
 }
