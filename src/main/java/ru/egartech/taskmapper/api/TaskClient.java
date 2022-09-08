@@ -11,7 +11,7 @@ public interface TaskClient {
 
     <T> TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<T>... customFieldsRequest);
 
-    TaskDto createTask(CreateTaskDto createTaskDto);
+    TaskDto createTask(int listId, CreateTaskDto createTaskDto);
 
     TaskDto updateTask(UpdateTaskDto updateTaskDto);
 

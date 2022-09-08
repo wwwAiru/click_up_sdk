@@ -50,8 +50,17 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public TaskDto createTask(CreateTaskDto createTaskDto) {
-        return null;
+    public TaskDto createTask(int listId, CreateTaskDto createTaskDto) {
+        Map<String, Object> uriVariables = new HashMap<>();
+
+        uriVariables.put("list_id", listId);
+
+        return restTemplate.postForObject(
+                UrlProvider.CREATE_TASK.getUrl(),
+                createTaskDto,
+                TaskDto.class,
+                uriVariables
+        );
     }
 
     @Override
