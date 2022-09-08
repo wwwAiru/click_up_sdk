@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.taskmapper.dto.task.CreateTaskDto;
-import ru.egartech.taskmapper.dto.task.TaskDto;
-import ru.egartech.taskmapper.dto.task.TasksDto;
-import ru.egartech.taskmapper.dto.task.UpdateTaskDto;
+import ru.egartech.taskmapper.dto.task.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +47,7 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public TaskDto createTask(int listId, CreateTaskDto createTaskDto) {
+    public TaskDto createTask(int listId, RequestTaskDto createTaskDto) {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("list_id", listId);
@@ -64,7 +61,7 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public TaskDto updateTask(UpdateTaskDto updateTaskDto) {
+    public TaskDto updateTask(RequestTaskDto updateTaskDto) {
         return null;
     }
 
