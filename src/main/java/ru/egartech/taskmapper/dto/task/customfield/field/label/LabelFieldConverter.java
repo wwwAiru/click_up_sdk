@@ -4,18 +4,18 @@ import com.fasterxml.jackson.databind.util.StdConverter;
 
 import java.util.stream.Collectors;
 
+import static java.util.Objects.nonNull;
+
 public class LabelFieldConverter extends StdConverter<LabelsFieldDto, LabelsFieldDto> {
     @Override
-    public LabelsFieldDto convert(LabelsFieldDto value) {
-        LabelTypeConfig labelTypeConfig = value.getLabelTypeConfig();
-        if (value.getValue() == null) {
-            return value;
+    public LabelsFieldDto convert(LabelsFieldDto lfd) {
+        LabelTypeConfig labelTypeConfig = lfd.getLabelTypeConfig();
+        if (!nonNull(lfd.getValue())) {
+            return lfd;
         }
-
-        value.setValue(value.getValue().stream()
+        lfd.setValue(lfd.getValue().stream()
                 .map(e -> labelTypeConfig.byLabelId(e.getId()))
                 .collect(Collectors.toList()));
-
-        return value;
+        return lfd;
     }
 }
