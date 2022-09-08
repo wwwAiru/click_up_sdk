@@ -20,5 +20,5 @@ public class CreateTaskDto extends RequestTaskDto {
     private final String name;
 
     @JsonProperty("custom_fields")
-    private List<CreateFieldDto> customFields;
+    private List<BindFieldDto> customFields;
 }

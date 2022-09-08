@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor(staticName = "of")
-public class CreateFieldDto {
+public class BindFieldDto {
 
     private final String id;
     private final Object value;
