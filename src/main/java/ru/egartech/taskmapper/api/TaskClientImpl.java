@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.taskmapper.dto.task.BindFieldDto;
-import ru.egartech.taskmapper.dto.task.RequestTaskDto;
-import ru.egartech.taskmapper.dto.task.TaskDto;
-import ru.egartech.taskmapper.dto.task.TasksDto;
+import ru.egartech.taskmapper.dto.task.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +20,11 @@ public class TaskClientImpl implements TaskClient {
     private final ObjectMapper mapper;
 
     @Override
-    public TaskDto getTaskById(String id, Boolean hasIncludeSubtasks) {
+    public TaskDto getTaskById(String id, Boolean includeSubtasks) {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("id", id);
-        uriVariables.put("include_subtasks", hasIncludeSubtasks);
+        uriVariables.put("include_subtasks", includeSubtasks);
 
         return restTemplate.getForObject(
                 UrlProvider.SEARCH_TASK_BY_ID_URL.getUrl(),
