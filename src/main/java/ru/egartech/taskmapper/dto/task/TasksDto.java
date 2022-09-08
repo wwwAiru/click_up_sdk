@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.egartech.taskmapper.exception.customfield.CustomFieldNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,7 +18,7 @@ import java.util.List;
 public class TasksDto {
 
     @JsonProperty("tasks")
-    private List<TaskDto> tasks;
+    private List<TaskDto> tasks = new ArrayList<>();
 
     @JsonIgnore
     public TaskDto get() {

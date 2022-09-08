@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.egartech.taskmapper.exception.customfield.CustomFieldValueNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class LabelTypeConfig {
 
     @JsonProperty("options")
-    private List<LabelOptionDto> labelOptionDtos;
+    private List<LabelOptionDto> labelOptionDtos = new ArrayList<>();
 
     public LabelOptionDto byLabelId(String id) {
         return labelOptionDtos.stream()

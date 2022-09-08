@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.egartech.taskmapper.exception.customfield.CustomFieldValueNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import java.util.Objects;
 public class DropdownTypeConfig {
 
     @JsonProperty("options")
-    private List<DropdownOption> labelOptions;
+    private List<DropdownOption> labelOptions = new ArrayList<>();
 
     public DropdownOption byOrderIndex(Integer orderIndex) {
         return labelOptions.stream()
