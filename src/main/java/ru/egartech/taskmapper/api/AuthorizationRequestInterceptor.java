@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthorizationRequestInterceptor implements ClientHttpRequestInterceptor {
 
-    @Value("${openfeign.basic.token}")
+    @Value("${clickup.api.token}")
     private String headerValue;
 
     @Override
