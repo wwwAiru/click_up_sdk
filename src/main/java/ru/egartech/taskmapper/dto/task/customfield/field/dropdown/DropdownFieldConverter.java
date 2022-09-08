@@ -2,14 +2,14 @@ package ru.egartech.taskmapper.dto.task.customfield.field.dropdown;
 
 import com.fasterxml.jackson.databind.util.StdConverter;
 
-import static java.util.Objects.nonNull;
+import static java.util.Objects.isNull;
 
 public class DropdownFieldConverter extends StdConverter<DropdownFieldDto, DropdownFieldDto> {
     @Override
     public DropdownFieldDto convert(DropdownFieldDto dfd) {
         DropdownTypeConfig dropdownTypeConfig = dfd.getDropdownTypeConfig();
         DropdownOption dropdownOption = dfd.getValue();
-        if (!nonNull(dropdownOption)) {
+        if (isNull(dropdownOption)) {
             return dfd;
         }
         Integer orderindex = dropdownOption.getValue();
