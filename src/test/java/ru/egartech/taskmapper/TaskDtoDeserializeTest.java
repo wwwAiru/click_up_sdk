@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.util.ResourceUtils;
 import ru.egartech.taskmapper.dto.task.TaskDto;
@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@JsonTest
+@SpringBootTest(classes = TaskDtoDeserializeTest.class)
 @AutoConfigureJson
 @ComponentScan("ru.egartech.taskmapper")
 public class TaskDtoDeserializeTest {
