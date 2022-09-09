@@ -107,27 +107,23 @@ public class Service {
 
     private final TaskClient client;
 
-    public TaskDto linkUnlinkSickday(String listId, String egarId, String linkSickdayId, String... unlinkSickdayIds) {
-        TaskDto user = client.getTasksByCustomField(
-                listId,
-                CustomFieldsRequest
-                        .builder()
-                        .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
-                        .value("egarId")
-                        .build()
-        ).get();
+    public TaskDto linkUnlinkSickday(String listId, String egarId, String sickdayId) {
+        TaskDto user = client.getTasksByCustomFields(123,
+                CustomFieldRequest
+                        .create()
+                        .setFieldId("836c9684-0c71-4714-aff2-900b0ded0685")
+                        .setValue(egarId)
+        ).getFirstTask();
+
+        BindFieldDto customField = BindFieldDto.of(
+                "628n1127-1q16-9501-opm2-012q7mgl9106",
+                TaskRelationship.create().link(sickdayId)
+        );
 
         return client.updateTask(
-                UpdateTaskDto.of(user.getId())
+                UpdateTaskDto.ofTaskId(user.getId())
                         .setDescription("Сотрудник был обновлён! " + LocalDateTime.now())
-                        .setCustomFields(List.of(
-                                        BindFieldDto.of(
-                                                "628n1127-1q16-9501-opm2-012q7mgl9106",
-                                                Relationship.of()
-                                                        .link(sickdayId)
-                                                        .unlink(unlinkSickdayIds))
-                                )
-                        )
+                        .setCustomFields(customField)
         );
     }
 

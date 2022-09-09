@@ -21,7 +21,7 @@ public class TasksDto {
     private List<TaskDto> tasks = new ArrayList<>();
 
     @JsonIgnore
-    public TaskDto get() {
+    public TaskDto getFirstTask() {
         return tasks.stream()
                 .findFirst()
                 .orElseThrow(

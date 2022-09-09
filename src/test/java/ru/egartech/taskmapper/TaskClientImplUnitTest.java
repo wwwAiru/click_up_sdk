@@ -81,7 +81,7 @@ public class TaskClientImplUnitTest {
         TasksDto tasksDto = mapper.readValue(jsonFile, TasksDto.class);
 
         when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(tasksDto);
-        taskClient.getTasksByCustomField("listId");
+        taskClient.getTasksByCustomFields(123);
         verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
 
         assertThat(tasksDto.getTasks())
@@ -94,7 +94,7 @@ public class TaskClientImplUnitTest {
         int N = new Random().nextInt(10);
 
         taskClient.updateTask(
-                UpdateTaskDto.of("any")
+                UpdateTaskDto.ofTaskId("any")
                         .setCustomFields(
                                 Stream.generate(() -> BindFieldDto.of("", ""))
                                         .limit(N)

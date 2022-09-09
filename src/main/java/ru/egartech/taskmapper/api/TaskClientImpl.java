@@ -34,11 +34,11 @@ public class TaskClientImpl implements TaskClient {
 
     @SneakyThrows
     @Override
-    public final TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<?>... customFieldsRequest) {
+    public final TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest) {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("list_id", listId);
-        uriVariables.put("custom_field_req", mapper.writeValueAsString(customFieldsRequest));
+        uriVariables.put("custom_field_req", mapper.writeValueAsString(customFieldRequest));
 
         return restTemplate.getForObject(
                 UrlProvider.SEARCH_TASKS_BY_CUSTOM_FIELDS_URL.getUrl(),
@@ -88,7 +88,7 @@ public class TaskClientImpl implements TaskClient {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("id", taskId);
-        uriVariables.put("field_id", field.getId());
+        uriVariables.put("field_id", field.getFieldId());
 
         restTemplate.postForObject(
                 UrlProvider.UPDATE_CUSTOM_FIELD.getUrl(),

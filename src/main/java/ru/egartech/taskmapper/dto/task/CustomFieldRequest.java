@@ -1,13 +1,16 @@
 package ru.egartech.taskmapper.dto.task;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
 import ru.egartech.taskmapper.api.Operator;
 
 @Data
 @Builder
-public class CustomFieldsRequest<T> {
+@AllArgsConstructor
+@NoArgsConstructor(staticName = "create")
+@Accessors(chain = true)
+public class CustomFieldRequest<T> {
 
     @JsonProperty("field_id")
     private String fieldId;

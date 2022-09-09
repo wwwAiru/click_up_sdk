@@ -28,4 +28,13 @@ public abstract class RequestTaskDto {
 
     public abstract String getId();
 
+    public RequestTaskDto setCustomFields(BindFieldDto... customFields) {
+        this.customFields = List.of(customFields);
+        return this;
+    }
+
+    public RequestTaskDto setCustomFields(List<BindFieldDto> customFields) {
+        this.customFields = customFields;
+        return this;
+    }
 }

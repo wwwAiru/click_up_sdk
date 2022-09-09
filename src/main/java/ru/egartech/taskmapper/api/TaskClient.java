@@ -20,14 +20,14 @@ public interface TaskClient {
     TaskDto getTaskById(String id, Boolean includeSubtasks);
 
     /**
-     * Делает запрос в ClickUp и возвращает {@link TaskDto} по {@link CustomFieldsRequest}.
+     * Делает запрос в ClickUp и возвращает {@link TaskDto} по {@link CustomFieldRequest}.
      *
      * @param listId идентификатор листа, в котором находится задача.
-     * @param customFieldsRequest объект для поиска по кастом филду, состоящий из: идентификатора поля,
+     * @param customFieldRequest объект для поиска по кастом филду, состоящий из: идентификатора поля,
      * оператора сравнения и значения поля.
      *
-     * @see CustomFieldsRequest*/
-    TasksDto getTasksByCustomField(String listId, CustomFieldsRequest<?>... customFieldsRequest);
+     * @see CustomFieldRequest */
+    TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest);
 
     /**
      * Делает запрос в ClickUp и создаёт новую таску, возвращает {@link TaskDto} (только что созданная таска).

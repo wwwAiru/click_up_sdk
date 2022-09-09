@@ -11,7 +11,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Data
 @Accessors(chain = true)
-@RequiredArgsConstructor(staticName = "of")
+@RequiredArgsConstructor(staticName = "ofTaskId")
 @JsonInclude(Include.NON_NULL)
 public class UpdateTaskDto extends RequestTaskDto {
 
