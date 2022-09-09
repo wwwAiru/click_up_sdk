@@ -6,11 +6,12 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.client.RestTemplate;
 import ru.egartech.taskmapper.api.TaskClient;
 import ru.egartech.taskmapper.dto.task.TaskDto;
 import ru.egartech.taskmapper.dto.task.TasksDto;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.*;
 import static ru.egartech.taskmapper.FileProvider.PREFIX;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,7 +32,10 @@ public class TaskClientImplUnitTest {
     @Autowired
     private FileProvider fileProvider;
 
-    @Mock
+    @MockBean
+    private RestTemplate restTemplate;
+
+    @Autowired
     private TaskClient taskClient;
 
     @SneakyThrows
@@ -41,12 +45,13 @@ public class TaskClientImplUnitTest {
         ObjectMapper mapper = new ObjectMapper();
         File jsonFile = ResourceUtils.getFile(PREFIX.concat(fileProvider.getTaskByIdJsonName()));
 
-        Map<String, Object> taskByIdJson = mapper.readValue(jsonFile, new TypeReference<>() {});
+        Map<String, Object> taskByIdJson = mapper.readValue(jsonFile, new TypeReference<>() {
+        });
         TaskDto taskDto = mapper.readValue(jsonFile, TaskDto.class);
 
-        when(taskClient.getTaskById(anyString(), anyBoolean())).thenReturn(taskDto);
-        taskClient.getTaskById("taskId", false);
-        verify(taskClient, times(1)).getTaskById(anyString(), anyBoolean());
+        when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(taskDto);
+        taskClient.getTaskById("", false);
+        verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
 
         List<Map<String, CustomField<?>>> customFieldsFromJson =
                 (List<Map<String, CustomField<?>>>) taskByIdJson.get("custom_fields");
@@ -62,12 +67,13 @@ public class TaskClientImplUnitTest {
     public void getTasksByCustomFields() {
         ObjectMapper mapper = new ObjectMapper();
         File jsonFile = ResourceUtils.getFile(PREFIX.concat(fileProvider.getTaskByCustomFieldsJsonName()));
-        Map<String, Object> taskByCustomFieldsJson = mapper.readValue(jsonFile, new TypeReference<>() {});
+        Map<String, Object> taskByCustomFieldsJson = mapper.readValue(jsonFile, new TypeReference<>() {
+        });
         TasksDto tasksDto = mapper.readValue(jsonFile, TasksDto.class);
 
-        lenient().when(taskClient.getTasksByCustomField(anyString(), any())).thenReturn(tasksDto);
+        when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(tasksDto);
         taskClient.getTasksByCustomField("listId");
-        verify(taskClient, times(1)).getTasksByCustomField(anyString(), any());
+        verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
 
         assertThat(tasksDto.getTasks())
                 .hasSize(((List<Map<String, Object>>) taskByCustomFieldsJson.get("tasks")).size());
