@@ -6,10 +6,10 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@RequiredArgsConstructor(staticName = "of")
+@RequiredArgsConstructor(staticName = "ofName")
 public class CreateTaskDto extends RequestTaskDto {
 
     private final String name;
-    private final String id;
+    private String id = "ignored";
 
 }
