@@ -1,31 +1,32 @@
 package ru.egartech.taskmapper;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.assertj.core.api.AbstractObjectAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.util.ResourceUtils;
 import ru.egartech.taskmapper.dto.task.TaskDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static ru.egartech.taskmapper.FileProvider.PREFIX;
 
-@SpringBootTest(classes = TaskDtoDeserializeTest.class)
+@SpringBootTest
 @AutoConfigureJson
-@ComponentScan("ru.egartech.taskmapper.dto")
 public class TaskDtoDeserializeTest {
 
-    @Value("${clickup.json.response.file-name}")
-    private String clickUpResponseFileName;
+    @Autowired
+    private FileProvider fileProvider;
 
     @Autowired
     private ObjectMapper mapper;
@@ -33,9 +34,8 @@ public class TaskDtoDeserializeTest {
     @Test
     @SneakyThrows
     public void deserializeTest() {
-        File jsonInFile = ResourceUtils.getFile("classpath:" + clickUpResponseFileName);
-
-        TaskDto taskDto = mapper.readValue(jsonInFile, TaskDto.class);
+        File jsonFile = ResourceUtils.getFile(PREFIX.concat(fileProvider.getTaskByIdJsonName()));
+        TaskDto taskDto = mapper.readValue(jsonFile, TaskDto.class);
         assertNotNull(taskDto);
 
         // выгрузка кастомных филдов, а также проверка, что TaskDto не равно null
@@ -55,6 +55,13 @@ public class TaskDtoDeserializeTest {
         extractingCustomFields
                 .extracting(Map::values)
                 .isNotNull();
+
+        Map<String, Object> taskFromJsonFile = mapper.readValue(jsonFile, new TypeReference<>() {
+        });
+        List<Map<String, Object>> customFieldsFromJsonInFile =
+                (List<Map<String, Object>>) taskFromJsonFile.get("custom_fields");
+
+        assertEquals(customFieldsFromJsonInFile.size(), taskDto.getCustomFields().size());
     }
 
 }
