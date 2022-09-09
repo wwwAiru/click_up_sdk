@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
+import ru.egartech.taskmapper.dto.task.customfield.update.Assigner;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -18,5 +19,8 @@ public class UpdateTaskDto extends RequestTaskDto {
 
     @JsonProperty("custom_id")
     private String customId;
+
+    @JsonProperty("assignees")
+    private Assigner assignees;
 
 }
