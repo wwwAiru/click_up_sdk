@@ -70,7 +70,7 @@ public class Service {
                         .operator(Operator.EQUALS.getOperator()) // Можно опустить, по дефолту EQUALS
                         .value(egarId)
                         .build()
-        );
+        ).get();
     }
 }
 ```
@@ -107,30 +107,25 @@ public class Service {
 
     private final TaskClient client;
 
-    public TaskDto linkUnlinkSickday(int listId, String egarId, String linkSickdayId, String... unlinkSickdayIds) {
+    public TaskDto linkUnlinkSickday(String listId, String egarId, String linkSickdayId, String... unlinkSickdayIds) {
         TaskDto user = client.getTasksByCustomField(
                 listId,
                 CustomFieldsRequest
                         .builder()
                         .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
-                        .value(egarId)
+                        .value("egarId")
                         .build()
-        );
-
-        RelationshipFieldDto relationships = user.customField("628n1127-1q16-9501-opm2-012q7mgl9106");
+        ).get();
 
         return client.updateTask(
                 UpdateTaskDto.of(user.getId())
                         .setDescription("Сотрудник был обновлён! " + LocalDateTime.now())
-                        .setCustomFields(CustomFieldsRequest
-                                .builder()
-                                .fieldId(relationships
-                                        .getRelationShipTypeConfig()
-                                        .getSubcategoryId()
-                                )
-                                .value(Relationship.of()
-                                        .link(sickdayId) // Идентификатор(ы) для подключения к списку
-                                        .unlink(unlinkSickdayIds) // Идентификатор(ы) для удаления из списка
+                        .setCustomFields(List.of(
+                                        BindFieldDto.of(
+                                                "628n1127-1q16-9501-opm2-012q7mgl9106",
+                                                Relationship.of()
+                                                        .link(sickdayId)
+                                                        .unlink(unlinkSickdayIds))
                                 )
                         )
         );
