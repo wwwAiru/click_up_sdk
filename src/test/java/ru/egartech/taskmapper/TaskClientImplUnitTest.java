@@ -13,20 +13,26 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.taskmapper.api.TaskClient;
+import ru.egartech.taskmapper.api.TaskClientImpl;
+import ru.egartech.taskmapper.dto.task.BindFieldDto;
 import ru.egartech.taskmapper.dto.task.TaskDto;
 import ru.egartech.taskmapper.dto.task.TasksDto;
+import ru.egartech.taskmapper.dto.task.UpdateTaskDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.CustomField;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.*;
 import static ru.egartech.taskmapper.FileProvider.PREFIX;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = {FileProvider.class, TaskClientImpl.class})
 public class TaskClientImplUnitTest {
 
     @Autowired
@@ -34,6 +40,9 @@ public class TaskClientImplUnitTest {
 
     @MockBean
     private RestTemplate restTemplate;
+
+    @MockBean
+    private ObjectMapper objectMapper;
 
     @Autowired
     private TaskClient taskClient;
@@ -77,6 +86,25 @@ public class TaskClientImplUnitTest {
 
         assertThat(tasksDto.getTasks())
                 .hasSize(((List<Map<String, Object>>) taskByCustomFieldsJson.get("tasks")).size());
+    }
+
+    @Test
+    @DisplayName("Verify that updateTask() called RestTemplate 2+N times")
+    public void updateTask() {
+        int N = new Random().nextInt(10);
+
+        taskClient.updateTask(
+                UpdateTaskDto.of("any")
+                        .setCustomFields(
+                                Stream.generate(() -> BindFieldDto.of("", ""))
+                                        .limit(N)
+                                        .collect(Collectors.toList())
+                        )
+        );
+
+        verify(restTemplate, times(1)).put(any(), any(), anyMap());
+        verify(restTemplate, times(1)).getForObject(any(), any(), anyMap());
+        verify(restTemplate, times(N)).postForObject(any(), any(), any(), anyMap());
     }
 
 }

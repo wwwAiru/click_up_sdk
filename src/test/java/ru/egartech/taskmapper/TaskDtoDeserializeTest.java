@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.assertj.core.api.AbstractObjectAssert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
@@ -21,18 +22,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static ru.egartech.taskmapper.FileProvider.PREFIX;
 
-@SpringBootTest
+@SpringBootTest(classes = {FileProvider.class})
 @AutoConfigureJson
 public class TaskDtoDeserializeTest {
 
     @Autowired
     private FileProvider fileProvider;
 
-    @Autowired
-    private ObjectMapper mapper;
-
-    @Test
     @SneakyThrows
+    @Test
+    @DisplayName("Verify that task can be deserialized")
     public void deserializeTest() {
         File jsonFile = ResourceUtils.getFile(PREFIX.concat(fileProvider.getTaskByIdJsonName()));
         TaskDto taskDto = mapper.readValue(jsonFile, TaskDto.class);
@@ -63,5 +62,8 @@ public class TaskDtoDeserializeTest {
 
         assertEquals(customFieldsFromJsonInFile.size(), taskDto.getCustomFields().size());
     }
+
+    @Autowired
+    private ObjectMapper mapper;
 
 }
