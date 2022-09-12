@@ -8,30 +8,11 @@
 ```
 <dependency>
    <groupId>ru.egartech</groupId>
-   <artifactId>click-up-sdk</artifactId>
+   <artifactId>click-up-sdk-starter</artifactId>
    <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
-4. Прописать аннотацию `@ComponentScan(basePackages = "ru.egartech.*")` над `Application.class`
-
-5. Создать `@Bean` `RestTemplate` и добавить туда `AuthorizationRequestInterceptor`:
-
-```java
-public class Config {
-
-    @Bean
-    public RestTemplate restTemplate(
-            @Autowired
-            AuthorizationRequestInterceptor interceptor
-    ) {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setInterceptors(List.of(interceptor));
-        return restTemplate;
-    }
-} 
-```
-
-7. application.yml:
+4. application.yml:
 
 ```yaml
 clickup:

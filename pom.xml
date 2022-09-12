@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>ru.egartech</groupId>
-    <artifactId>click-up-sdk</artifactId>
+    <artifactId>click-up-sdk-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>click-up-sdk</name>
@@ -23,6 +23,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
