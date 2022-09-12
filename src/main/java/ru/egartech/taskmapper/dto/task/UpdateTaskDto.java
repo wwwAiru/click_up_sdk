@@ -35,7 +35,7 @@ public class UpdateTaskDto extends RequestTaskDto {
     public UpdateTaskDto unlinkTask(String relationshipId, String taskId) {
         setCustomFields(BindFieldDto.of(
                 relationshipId,
-                TaskRelationship.create().link(taskId))
+                TaskRelationship.create().unlink(taskId))
         );
         return this;
     }

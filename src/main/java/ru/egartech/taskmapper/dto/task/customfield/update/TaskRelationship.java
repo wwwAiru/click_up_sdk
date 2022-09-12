@@ -17,12 +17,12 @@ public class TaskRelationship {
     private List<String> toRemove = new ArrayList<>();
 
     public TaskRelationship link(String... taskIds) {
-        toAdd = List.of(taskIds);
+        toAdd.addAll(List.of(taskIds));
         return this;
     }
 
     public TaskRelationship unlink(String... taskIds) {
-        toRemove = List.of(taskIds);
+        toRemove.addAll(List.of(taskIds));
         return this;
     }
 }
