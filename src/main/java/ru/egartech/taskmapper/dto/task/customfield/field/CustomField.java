@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import ru.egartech.taskmapper.dto.task.customfield.field.attachment.AttachmentFieldDto;
+import ru.egartech.taskmapper.dto.task.customfield.field.defaultf.DefaultFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.dropdown.DropdownFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.label.LabelsFieldDto;
 import ru.egartech.taskmapper.dto.task.customfield.field.number.NumberFieldDto;
@@ -15,7 +16,7 @@ import ru.egartech.taskmapper.dto.task.customfield.field.relationship.Relationsh
 import ru.egartech.taskmapper.dto.task.customfield.field.text.TextFieldDto;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = DefaultFieldDto.class)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AttachmentFieldDto.class, name = "attachment"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "date"),
