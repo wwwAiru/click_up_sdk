@@ -142,8 +142,8 @@ public class Service {
 Обновить таску:
 
 ```java
-import ru.egartech.taskmapper.dto.task.UpdateTaskDto;
-import ru.egartech.taskmapper.dto.task.customfield.update.Assigner;
+import ru.egartech.sdk.dto.task.UpdateTaskDto;
+import ru.egartech.sdk.dto.task.customfield.update.Assigner;
 
 public class Service {
 
