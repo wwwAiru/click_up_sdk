@@ -10,4 +10,8 @@ public enum Operator {
 
     @Getter
     private final String operator;
+
+    public static void main(String[] args) {
+
+    }
 }

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class RelationshipTypeConfig {
 
     @JsonProperty(value = "subcategory_id")
-    private String subcategoryId;
+    private int subcategoryId;
 
 }
