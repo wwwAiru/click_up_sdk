@@ -2,6 +2,9 @@ package ru.egartech.taskmapper.api;
 
 import ru.egartech.taskmapper.dto.task.*;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Интерфейс, объявляющий методы для работы с тасками в ClickUp. Все методы, кроме <b>updateTask()</b>, в точности повторяют собственное API ClickUp, <b>updateTask()</b> имеет более сложную внутреннюю логику, необходимо прочитать документацию к этому методу прежде чем использовать.
  *
@@ -28,6 +31,19 @@ public interface TaskClient {
      *
      * @see CustomFieldRequest */
     TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest);
+
+
+    /**
+     * <p><b>Опасно!</b></p>
+     *
+     * Делает несколько запросов в несколько списков ClickUp и возвращает {@link TaskDto} по {@link CustomFieldRequest}, притом количество запросов: <b>N</b>, где N - количество списокв, в которых может находиться задача.
+     *
+     * @param lists              коллекция идентификаторов листов, в котором может находиться задача.
+     * @param customFieldRequest объект для поиска по кастом филду, состоящий из: идентификатора поля,
+     *                           оператора сравнения и значения поля.
+     * @see CustomFieldRequest
+     */
+    List<TasksDto> getTasksByCustomFields(Collection<Integer> lists, CustomFieldRequest<?>... customFieldRequest);
 
     /**
      * Делает запрос в ClickUp и создаёт новую таску, возвращает {@link TaskDto} (только что созданная таска).

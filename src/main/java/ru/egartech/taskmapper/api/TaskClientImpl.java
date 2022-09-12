@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.taskmapper.dto.task.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -34,7 +32,7 @@ public class TaskClientImpl implements TaskClient {
 
     @SneakyThrows
     @Override
-    public final TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest) {
+    public TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest) {
         Map<String, Object> uriVariables = new HashMap<>();
 
         uriVariables.put("list_id", listId);
@@ -44,6 +42,19 @@ public class TaskClientImpl implements TaskClient {
                 UrlProvider.SEARCH_TASKS_BY_CUSTOM_FIELDS_URL.getUrl(),
                 TasksDto.class,
                 uriVariables);
+    }
+
+    @Override
+    public List<TasksDto> getTasksByCustomFields(
+            Collection<Integer> lists,
+            CustomFieldRequest<?>... customFieldRequest
+    ) {
+        return lists
+                .stream()
+                .filter(Objects::nonNull)
+                .map(id -> getTasksByCustomFields(id, customFieldRequest))
+                .filter(td -> !td.getTasks().isEmpty())
+                .toList();
     }
 
     @Override
