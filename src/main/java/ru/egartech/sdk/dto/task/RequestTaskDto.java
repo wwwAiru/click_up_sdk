@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import ru.egartech.sdk.dto.task.customfield.update.Assigner;
-import ru.egartech.sdk.dto.task.status.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ public abstract class RequestTaskDto {
     @JsonProperty("text_content")
     private String textContent;
     private String description;
-    private Status status = Status.OPEN;
 
     @JsonProperty("custom_fields")
     private List<BindFieldDto> customFields = new ArrayList<>();
