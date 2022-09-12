@@ -18,7 +18,7 @@ public abstract class RequestTaskDto {
     @JsonProperty("text_content")
     private String textContent;
     private String description;
-    private Status status;
+    private Status status = Status.OPEN;
 
     @JsonProperty("custom_fields")
     private List<BindFieldDto> customFields = new ArrayList<>();
