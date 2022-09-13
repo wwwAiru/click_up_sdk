@@ -12,7 +12,6 @@ import ru.egartech.sdk.exception.ApplicationException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @SuperBuilder
@@ -27,6 +26,7 @@ public class AttachmentFieldDto extends CustomField<List<AttachmentDto>> {
         if (getValue().size() > 1) {
             throw new ApplicationException("Элементов в коллекций больше чем 1");
         }
-        return Objects.requireNonNull(CollectionUtils.firstElement(getValue())).getUrl();
+        AttachmentDto attachment = CollectionUtils.firstElement(getValue());
+        return attachment == null ? null : attachment.getUrl();
     }
 }

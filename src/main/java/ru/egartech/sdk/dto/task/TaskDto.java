@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import ru.egartech.sdk.dto.task.assigner.AssignerDto;
 import ru.egartech.sdk.dto.task.customfield.deserializer.CustomFieldStdConverter;
 import ru.egartech.sdk.dto.task.customfield.field.CustomField;
+import ru.egartech.sdk.dto.task.list.ListDto;
 import ru.egartech.sdk.exception.customfield.CustomFieldNotFoundException;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class TaskDto {
 
     @JsonProperty("assignees")
     private List<AssignerDto> assigners = new ArrayList<>();
+
+    @JsonProperty("list")
+    private ListDto list;
 
     @JsonProperty("custom_fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
