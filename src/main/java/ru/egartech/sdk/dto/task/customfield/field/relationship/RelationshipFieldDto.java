@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import ru.egartech.sdk.dto.task.customfield.field.CustomField;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,5 +20,7 @@ public class RelationshipFieldDto extends CustomField<List<RelationshipValueDto>
 
     @JsonProperty(value = "type_config")
     private RelationshipTypeConfig relationShipTypeConfig;
+
+    protected List<RelationshipValueDto> value = new ArrayList<>();
 
 }
