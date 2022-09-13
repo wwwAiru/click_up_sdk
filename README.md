@@ -17,7 +17,14 @@
 ```yaml
 clickup:
   api:
-    token: token
+    tokens: 
+      - token1
+      - token2
+      - ...
+  list:
+    devs: "dev_list_id"
+    analytics: "analytics_list_id"
+    testers: "testers_list_id"
 ```
 
 ## Примеры использования ClickUp SDK:
@@ -54,6 +61,34 @@ public class Service {
         ).get();
     }
 }
+```
+
+Получить таску по кастомному полю, используя listid из properties файла:
+
+```java
+public class Service {
+
+    private final ListTaskClient client; // ListTaskClient подтягивает listids из properties
+
+    public TaskDto getTaskByEgarIdInMultipleLists(String egarId) {
+        List<TasksDto> unchekedTasks = client.getTasksByCustomFields(CustomFieldRequest.builder()
+                .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
+                .value(egarId)
+                .build()
+        );
+        // Если нужное поле повторяется в нескольких тасках, находящихся в разных листах, 
+        // нужно корректно корректно это обработать (и иметь ввиду такую возможность).
+        // В данном примере вернуться больше одной таски не должно, а потому - если таска
+        // не одна - кидается исключение
+
+        if (unchekedTasks.size() > 1) {
+            throw new ApplicationException("Тасок больше чем одна");
+        }
+
+        return CollectionUtils.firstElement(unchekedTasks);
+    }
+}
+
 ```
 
 Создать таску:
