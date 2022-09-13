@@ -3,6 +3,7 @@ package ru.egartech.sdk.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.dto.task.*;
@@ -10,6 +11,7 @@ import ru.egartech.sdk.dto.task.*;
 import java.util.*;
 
 @Component
+@Primary
 @RequiredArgsConstructor
 public class TaskClientImpl implements TaskClient {
 
