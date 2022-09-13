@@ -11,6 +11,7 @@ public enum UrlProvider {
     CREATE_TASK(BASE_URL.getUrl() + "/list/{list_id}/task"),
     UPDATE_TASK(BASE_URL.getUrl() + "/task/{id}"),
     UPDATE_CUSTOM_FIELD(BASE_URL.getUrl() + "/task/{id}/field/{field_id}"),
+    GET_ACCESSIBLE_CUSTOM_FIELDS(BASE_URL.getUrl() + "/list/{list_id}/field"),
     SEARCH_TASKS_BY_CUSTOM_FIELDS_URL(BASE_URL.getUrl() + "/list/{list_id}/task?custom_fields={custom_field_req}");
 
     @Getter
