@@ -22,14 +22,12 @@ public class ListTaskClientAutoConfiguration {
 
     private final ObjectMapper objectMapper;
 
+    private final ListIdsProperties listIdsProperties;
+
     @Bean
     @ConditionalOnMissingBean
     public ListTaskClient listTaskClient() {
-        return new ListTaskClientImpl(restTemplate, objectMapper, listIdsProperties());
-    }
-
-    public ListIdsProperties listIdsProperties() {
-        return new ListIdsProperties();
+        return new ListTaskClientImpl(restTemplate, objectMapper, listIdsProperties);
     }
 
 }
