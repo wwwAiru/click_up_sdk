@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.egartech.sdk.exception.ApplicationException;
-import ru.egartech.sdk.exception.customfield.CustomFieldNotFoundException;
+import ru.egartech.sdk.exception.task.TaskNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class TasksDto {
         return tasks.stream()
                 .findFirst()
                 .orElseThrow(
-                        () -> new CustomFieldNotFoundException("tasks")
+                        () -> new TaskNotFoundException("tasks")
                 );
     }
 
