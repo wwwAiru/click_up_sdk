@@ -9,6 +9,7 @@ import ru.egartech.sdk.dto.task.customfield.update.Assigner;
 import ru.egartech.sdk.dto.task.customfield.update.TaskRelationship;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
+import static java.util.Objects.isNull;
 
 @Data
 @Accessors(chain = true)
@@ -24,7 +25,10 @@ public class UpdateTaskDto extends RequestTaskDto {
     @JsonProperty("assignees")
     private Assigner assignees;
 
-    public UpdateTaskDto linkTask(String relationshipId, String taskId) {
+    public UpdateTaskDto linkTask(String relationshipId, String... taskId) {
+        if (isNull(taskId)) {
+            return this;
+        }
         setCustomFields(BindFieldDto.of(
                 relationshipId,
                 TaskRelationship.create().link(taskId))
@@ -32,7 +36,10 @@ public class UpdateTaskDto extends RequestTaskDto {
         return this;
     }
 
-    public UpdateTaskDto unlinkTask(String relationshipId, String taskId) {
+    public UpdateTaskDto unlinkTask(String relationshipId, String... taskId) {
+        if (isNull(taskId)) {
+            return this;
+        }
         setCustomFields(BindFieldDto.of(
                 relationshipId,
                 TaskRelationship.create().unlink(taskId))
@@ -40,12 +47,18 @@ public class UpdateTaskDto extends RequestTaskDto {
         return this;
     }
 
-    public UpdateTaskDto assignTo(String assignerId) {
+    public UpdateTaskDto assignTo(String... assignerId) {
+        if (isNull(assignerId)) {
+            return this;
+        }
         setAssignees(Assigner.of().link(assignerId));
         return this;
     }
 
-    public UpdateTaskDto unassign(String assignerId) {
+    public UpdateTaskDto unassign(String... assignerId) {
+        if (isNull(assignerId)) {
+            return this;
+        }
         setAssignees(Assigner.of().unlink(assignerId));
         return this;
     }
