@@ -74,19 +74,22 @@ SELECT * FROM Tasks WHERE field_id = "856d3fd6-b982-4085-aa67-65d60bf41bb7", val
 Воспроизводит такой JSON класс `BindFieldDto` (он имеет название Bind из-за того, что создавать кастомные филды нельзя, можно только обновлять их значения и добавлять созданные вручную филды к таске). По дефолту оператор `=` поэтому указывать его не нужно, достаточно указать **FieldId** и **Value**. Ниже приведён пример сервиса, который ищет все таски, где кастом филд `Номер` с **FieldID** `856d3fd6-b982-4085-aa67-65d60bf41bb7` равен какому-либо числу (предполагается что таска может быть в нескольких филдах, поэтому будет совершено несколько запросов):
 
 ```java
+import ru.egartech.sdk.dto.task.CustomFieldRequest;
+
 public class Service {
 
     private final TaskClient client;
-    
+
     private final String myNumberFieldId = "856d3fd6-b982-4085-aa67-65d60bf41bb7";
 
-    public TaskDto findMyTask(int whereToFindListId, int number) {
+    public TaskDto findMyTask(int number) {
         return client.getTasksByCustomFields(
                 List.of(12345678, 12345679, 12345610, 12345611, 12345123),
-                BindFieldDto.of(
-                        myNumberFieldId,
-                        number
-                )
+                CustomFieldRequest
+                        .builder()
+                        .fieldId(myNumberFieldId)
+                        .value(number)
+                        .build()
         );
     }
 
@@ -125,7 +128,7 @@ public class Service {
     public TaskDto getTaskByListIdAndEgarId(int listId, String egarId) {
         return client.getTasksByCustomField(
                 listId,
-                CustomFieldsRequest.builder()
+                CustomFieldRequest.builder()
                         .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
                         .operator(Operator.EQUALS.getOperator()) // Можно опустить, по дефолту EQUALS
                         .value(egarId)
