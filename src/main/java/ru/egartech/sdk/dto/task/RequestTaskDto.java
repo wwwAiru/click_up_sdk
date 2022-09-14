@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import ru.egartech.sdk.dto.task.customfield.update.Assigner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,6 @@ public abstract class RequestTaskDto {
 
     @JsonProperty("custom_fields")
     private List<BindFieldDto> customFields = new ArrayList<>();
-
-    @JsonProperty("assignees")
-    private Assigner assignees;
 
     public abstract String getId();
 
