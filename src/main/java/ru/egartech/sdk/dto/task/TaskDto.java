@@ -50,4 +50,21 @@ public class TaskDto {
         return (T) customField;
     }
 
+    public <T extends CustomField<?>> T customField(String id, Class<T> tClass) {
+        CustomField<?> customField = customFields.get(id);
+
+        if (customField == null) throw new CustomFieldNotFoundException(id);
+
+        return tClass.cast(customField);
+    }
+
+    /**
+     * Возвращает список кастомных полей для последующего каста. Неактуален в связи с наличием метода {@link #customField(String field_id)}.
+     *
+     * @see #customField(String field_id)
+     * */
+    @Deprecated
+    public Map<String, CustomField<?>> getCustomFields() {
+        return customFields;
+    }
 }
