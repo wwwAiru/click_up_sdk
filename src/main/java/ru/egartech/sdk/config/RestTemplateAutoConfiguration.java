@@ -1,7 +1,7 @@
 package ru.egartech.sdk.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import ru.egartech.sdk.api.AuthorizationProperties;
 import ru.egartech.sdk.api.AuthorizationRequestInterceptor;
 
 @Configuration
-@ConditionalOnWebApplication
+@ConditionalOnProperty(prefix = "clickup.api", name = "tokens", matchIfMissing = true)
 @EnableConfigurationProperties(value = AuthorizationProperties.class)
 @RequiredArgsConstructor
 public class RestTemplateAutoConfiguration {

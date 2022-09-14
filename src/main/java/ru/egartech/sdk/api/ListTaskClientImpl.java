@@ -11,9 +11,9 @@ import java.util.List;
 @Component
 public class ListTaskClientImpl extends TaskClientImpl implements ListTaskClient {
 
-    private final ListIdsProperties properties;
+    private final SearchListsProperties properties;
 
-    public ListTaskClientImpl(RestTemplate restTemplate, ObjectMapper mapper, ListIdsProperties properties) {
+    public ListTaskClientImpl(RestTemplate restTemplate, ObjectMapper mapper, SearchListsProperties properties) {
         super(restTemplate, mapper);
         this.properties = properties;
     }

@@ -21,10 +21,12 @@ clickup:
       - token1
       - token2
       - ...
-  list:
-    devs: "dev_list_id"
-    analytics: "analytics_list_id"
-    testers: "testers_list_id"
+  # ID списков для поиска в ListTaskClient
+  search-list:
+    ids:
+      - 12345678 
+      - 12345678
+      - 12345678
 ```
 
 # Краткое описание SDK
@@ -155,7 +157,7 @@ public class Service {
             throw new ApplicationException("Тасок больше чем одна");
         }
 
-        return CollectionUtils.firstElement(unchekedTasks);
+        return CollectionUtils.firstElement(unchekedTasks).getFirstTask();
     }
 }
 

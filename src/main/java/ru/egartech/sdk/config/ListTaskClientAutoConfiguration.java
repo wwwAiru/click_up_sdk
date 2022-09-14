@@ -8,13 +8,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.sdk.api.ListIdsProperties;
+import ru.egartech.sdk.api.SearchListsProperties;
 import ru.egartech.sdk.api.ListTaskClient;
 import ru.egartech.sdk.api.ListTaskClientImpl;
 
 @Configuration
-@ConditionalOnProperty(prefix = "clickup.list", name = "list_ids", matchIfMissing = true)
-@EnableConfigurationProperties(value = ListIdsProperties.class)
+@ConditionalOnProperty(prefix = "clickup.search-list", name = "list_ids", matchIfMissing = true)
+@EnableConfigurationProperties(value = SearchListsProperties.class)
 @RequiredArgsConstructor
 public class ListTaskClientAutoConfiguration {
 
@@ -22,12 +22,12 @@ public class ListTaskClientAutoConfiguration {
 
     private final ObjectMapper objectMapper;
 
-    private final ListIdsProperties listIdsProperties;
+    private final SearchListsProperties searchListsProperties;
 
     @Bean
     @ConditionalOnMissingBean
     public ListTaskClient listTaskClient() {
-        return new ListTaskClientImpl(restTemplate, objectMapper, listIdsProperties);
+        return new ListTaskClientImpl(restTemplate, objectMapper, searchListsProperties);
     }
 
 }

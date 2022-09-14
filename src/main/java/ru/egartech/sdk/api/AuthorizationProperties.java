@@ -1,14 +1,16 @@
 package ru.egartech.sdk.api;
 
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import ru.egartech.sdk.exception.token.TokensNotSpecifiedException;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
+@Data
+@Configuration
 @ConfigurationProperties(prefix = "clickup.api")
 public class AuthorizationProperties {
 
