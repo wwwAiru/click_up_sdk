@@ -3,6 +3,7 @@ package ru.egartech.sdk.dto.task;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import ru.egartech.sdk.dto.task.customfield.update.Assigner;
@@ -15,6 +16,7 @@ import static java.util.Objects.isNull;
 @Accessors(chain = true)
 @RequiredArgsConstructor(staticName = "ofTaskId")
 @JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode(callSuper = true)
 public class UpdateTaskDto extends RequestTaskDto {
 
     private final String id;
