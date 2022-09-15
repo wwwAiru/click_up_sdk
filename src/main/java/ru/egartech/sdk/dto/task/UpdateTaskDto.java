@@ -31,7 +31,7 @@ public class UpdateTaskDto extends RequestTaskDto {
         if (isNull(taskId)) {
             return this;
         }
-        setCustomFields(BindFieldDto.of(
+        bindCustomFields(BindFieldDto.of(
                 relationshipId,
                 TaskRelationship.create().link(taskId))
         );
@@ -42,7 +42,7 @@ public class UpdateTaskDto extends RequestTaskDto {
         if (isNull(taskId)) {
             return this;
         }
-        setCustomFields(BindFieldDto.of(
+        bindCustomFields(BindFieldDto.of(
                 relationshipId,
                 TaskRelationship.create().unlink(taskId))
         );

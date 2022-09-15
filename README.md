@@ -179,7 +179,7 @@ public class Service {
                 CreateTaskDto.ofName("Сотрудник: Иванов Иван Иванович")
                         .setDescription("Новый сотрудник, контракт до: 09.09.2023")
                         .setStatus(Status.OPEN) // Можно опустить, по дефолту Status.OPEN
-                        .setCustomFields(
+                        .bindCustomFields(
                                 BindFieldDto.of("836d9684-0c72-4714-aff2-705b0ded0685", egarId),
                                 BindFieldDto.of("391c9685-9c71-4198-afz1-891q3dlq0685", firstname),
                                 BindFieldDto.of("012a4674-0f66-9901-qwr1-281q1sll0799", lastname),
@@ -259,7 +259,7 @@ public class Service {
                                 .link("2840171")
                         ) // Добавить главной задаче проверяющего
                         .setDescription("Сотрудник был обновлён! " + LocalDateTime.now()) // Обновить описание
-                        .setCustomFields(customField) // Задать кастом филды
+                        .bindCustomFields(customField) // Задать кастом филды
         );
     }
 

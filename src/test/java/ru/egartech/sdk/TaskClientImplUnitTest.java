@@ -95,7 +95,7 @@ public class TaskClientImplUnitTest {
 
         taskClient.updateTask(
                 UpdateTaskDto.ofTaskId("any")
-                        .setCustomFields(
+                        .bindCustomFields(
                                 Stream.generate(() -> BindFieldDto.of("", ""))
                                         .limit(N)
                                         .collect(Collectors.toList())

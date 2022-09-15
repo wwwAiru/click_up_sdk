@@ -23,13 +23,13 @@ public abstract class RequestTaskDto {
 
     public abstract String getId();
 
-    public RequestTaskDto setCustomFields(BindFieldDto... customFields) {
-        this.customFields = List.of(customFields);
+    public RequestTaskDto bindCustomFields(BindFieldDto... customFields) {
+        this.customFields.addAll(List.of(customFields));
         return this;
     }
 
-    public RequestTaskDto setCustomFields(List<BindFieldDto> customFields) {
-        this.customFields = customFields;
+    public RequestTaskDto bindCustomFields(List<BindFieldDto> customFields) {
+        this.customFields.addAll(customFields);
         return this;
     }
 }
