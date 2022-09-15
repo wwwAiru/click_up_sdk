@@ -22,6 +22,7 @@ public abstract class RequestTaskDto {
     private List<BindFieldDto> customFields = new ArrayList<>();
 
     public abstract String getId();
+    public abstract String getName();
 
     public RequestTaskDto bindCustomFields(BindFieldDto... customFields) {
         this.customFields.addAll(List.of(customFields));

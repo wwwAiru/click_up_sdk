@@ -20,6 +20,7 @@ import static java.util.Objects.isNull;
 public class UpdateTaskDto extends RequestTaskDto {
 
     private final String id;
+    private String name;
 
     @JsonProperty("custom_id")
     private String customId;
