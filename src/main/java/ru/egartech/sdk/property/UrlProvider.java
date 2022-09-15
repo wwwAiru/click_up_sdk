@@ -1,4 +1,4 @@
-package ru.egartech.sdk.api;
+package ru.egartech.sdk.property;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

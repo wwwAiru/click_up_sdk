@@ -1,4 +1,4 @@
-package ru.egartech.sdk.api;
+package ru.egartech.sdk.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.sdk.api.SearchListsProperties;
+import ru.egartech.sdk.property.SearchListsProperties;
 import ru.egartech.sdk.api.ListTaskClient;
 import ru.egartech.sdk.api.impl.ListTaskClientImpl;
 

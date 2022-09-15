@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import ru.egartech.sdk.api.AuthorizationProperties;
+import ru.egartech.sdk.property.AuthorizationProperties;
 import ru.egartech.sdk.api.AuthorizationRequestInterceptor;
 
 @Configuration
