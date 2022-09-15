@@ -14,18 +14,14 @@ import java.util.*;
 @Primary
 @RequiredArgsConstructor
 public class TaskClientImpl implements TaskClient {
-
     private final RestTemplate restTemplate;
-
     private final ObjectMapper mapper;
 
     @Override
     public TaskDto getTaskById(String id, Boolean includeSubtasks) {
         Map<String, Object> uriVariables = new HashMap<>();
-
         uriVariables.put("id", id);
         uriVariables.put("include_subtasks", includeSubtasks);
-
         return restTemplate.getForObject(
                 UrlProvider.SEARCH_TASK_BY_ID_URL.getUrl(),
                 TaskDto.class,
@@ -36,10 +32,8 @@ public class TaskClientImpl implements TaskClient {
     @Override
     public TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest) {
         Map<String, Object> uriVariables = new HashMap<>();
-
         uriVariables.put("list_id", listId);
         uriVariables.put("custom_field_req", mapper.writeValueAsString(customFieldRequest));
-
         return restTemplate.getForObject(
                 UrlProvider.SEARCH_TASKS_BY_CUSTOM_FIELDS_URL.getUrl(),
                 TasksDto.class,
@@ -47,10 +41,8 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public List<TasksDto> getTasksByCustomFields(
-            Collection<Integer> lists,
-            CustomFieldRequest<?>... customFieldRequest
-    ) {
+    public List<TasksDto> getTasksByCustomFields(Collection<Integer> lists,
+                                                 CustomFieldRequest<?>... customFieldRequest) {
         return lists
                 .stream()
                 .filter(Objects::nonNull)
@@ -62,9 +54,7 @@ public class TaskClientImpl implements TaskClient {
     @Override
     public TaskDto createTask(int listId, RequestTaskDto createTaskDto) {
         Map<String, Object> uriVariables = new HashMap<>();
-
         uriVariables.put("list_id", listId);
-
         return restTemplate.postForObject(
                 UrlProvider.CREATE_TASK.getUrl(),
                 createTaskDto,
@@ -77,15 +67,12 @@ public class TaskClientImpl implements TaskClient {
     public TaskDto updateTask(RequestTaskDto task) {
         updateTaskWithoutCustomFields(task);
         updateAllCustomFieldsDto(task.getId(), task.getCustomFields());
-
         return getTaskById(task.getId(), false);
     }
 
     private void updateTaskWithoutCustomFields(RequestTaskDto dto) {
         Map<String, Object> uriVariables = new HashMap<>();
-
         uriVariables.put("id", dto.getId());
-
         restTemplate.put(
                 UrlProvider.UPDATE_TASK.getUrl(),
                 dto,
@@ -99,10 +86,8 @@ public class TaskClientImpl implements TaskClient {
 
     private void updateCustomField(String taskId, BindFieldDto field) {
         Map<String, Object> uriVariables = new HashMap<>();
-
         uriVariables.put("id", taskId);
         uriVariables.put("field_id", field.getFieldId());
-
         restTemplate.postForObject(
                 UrlProvider.UPDATE_CUSTOM_FIELD.getUrl(),
                 field,
