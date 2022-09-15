@@ -3,7 +3,6 @@ package ru.egartech.sdk.dto.task;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
-import ru.egartech.sdk.api.Operator;
 
 @Data
 @Builder
@@ -19,5 +18,14 @@ public class CustomFieldRequest<T> {
     private String operator = Operator.EQUALS.getOperator();
 
     private T value;
+
+    @RequiredArgsConstructor
+    public enum Operator {
+
+        EQUALS("=");
+
+        @Getter
+        private final String operator;
+    }
 
 }
