@@ -1,19 +1,29 @@
 package ru.egartech.sdk;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ResourceUtils;
 
-@Getter
+import java.io.File;
+import java.io.FileNotFoundException;
+
 @Configuration
 public class FileProvider {
 
-    public static final String PREFIX = "classpath:";
-
-    @Value("${clickup.json.response.file-name.task-by-id}")
+    @Value("${clickup.response.json.file-name.task-by-id}")
     private String taskByIdJsonName;
 
-    @Value("${clickup.json.response.file-name.task-by-custom-fields}")
+    @Value("${clickup.response.json.file-name.task-by-custom-fields}")
     private String taskByCustomFieldsJsonName;
+
+    public File getTaskByIdFile() throws FileNotFoundException {
+        return ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX
+                .concat(taskByIdJsonName));
+    }
+
+    public File getTaskByCustomFields() throws FileNotFoundException {
+        return ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX
+                .concat(taskByCustomFieldsJsonName));
+    }
 
 }

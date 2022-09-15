@@ -1,6 +1,6 @@
 clickup:
-  json:
-    response:
+  response:
+    json:
       file-name:
         task-by-id: task_by_id_response.json
         task-by-custom-fields: task_by_custom_fields_response.json
