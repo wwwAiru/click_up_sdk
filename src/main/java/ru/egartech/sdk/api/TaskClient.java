@@ -1,5 +1,6 @@
 package ru.egartech.sdk.api;
 
+import ru.egartech.sdk.api.impl.TaskClientImpl;
 import ru.egartech.sdk.dto.task.*;
 
 import java.util.Collection;
@@ -17,7 +18,6 @@ public interface TaskClient {
      *
      * @param id идентификатор таски в ClickUp.
      * @param includeSubtasks если <b>True</b>, то возвратить сабтаски.
-     *
      *
      * @see TaskDto*/
     TaskDto getTaskById(String id, Boolean includeSubtasks);

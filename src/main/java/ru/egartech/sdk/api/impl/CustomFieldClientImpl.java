@@ -1,8 +1,10 @@
-package ru.egartech.sdk.api;
+package ru.egartech.sdk.api.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.api.CustomFieldClient;
+import ru.egartech.sdk.api.UrlProvider;
 import ru.egartech.sdk.dto.task.FieldsDto;
 
 import java.util.HashMap;

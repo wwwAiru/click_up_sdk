@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.TaskClient;
-import ru.egartech.sdk.api.TaskClientImpl;
+import ru.egartech.sdk.api.impl.TaskClientImpl;
 import ru.egartech.sdk.dto.task.BindFieldDto;
 import ru.egartech.sdk.dto.task.TaskDto;
 import ru.egartech.sdk.dto.task.TasksDto;

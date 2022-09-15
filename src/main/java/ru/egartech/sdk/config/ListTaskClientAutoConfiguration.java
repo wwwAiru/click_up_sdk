@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.SearchListsProperties;
 import ru.egartech.sdk.api.ListTaskClient;
-import ru.egartech.sdk.api.ListTaskClientImpl;
+import ru.egartech.sdk.api.impl.ListTaskClientImpl;
 
 @Configuration
 @ConditionalOnProperty(prefix = "clickup.search-list", name = "list_ids", matchIfMissing = true)

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.TaskClient;
-import ru.egartech.sdk.api.TaskClientImpl;
+import ru.egartech.sdk.api.impl.TaskClientImpl;
 
 @Configuration
 @ConditionalOnClass(TaskClient.class)

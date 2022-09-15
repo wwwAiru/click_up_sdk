@@ -1,5 +1,7 @@
 package ru.egartech.sdk.api;
 
+import ru.egartech.sdk.api.impl.ListTaskClientImpl;
+import ru.egartech.sdk.api.impl.TaskClientImpl;
 import ru.egartech.sdk.dto.task.CustomFieldRequest;
 import ru.egartech.sdk.dto.task.TaskDto;
 import ru.egartech.sdk.dto.task.TasksDto;

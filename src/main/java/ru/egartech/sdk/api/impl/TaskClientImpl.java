@@ -1,4 +1,4 @@
-package ru.egartech.sdk.api;
+package ru.egartech.sdk.api.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.api.TaskClient;
+import ru.egartech.sdk.api.UrlProvider;
 import ru.egartech.sdk.dto.task.*;
 
 import java.util.*;
