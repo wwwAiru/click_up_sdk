@@ -8,7 +8,7 @@
 ```
 <dependency>
    <groupId>ru.egartech</groupId>
-   <artifactId>click-up-sdk-starter</artifactId>
+   <artifactId>click-up-sdk-spring-boot-starter</artifactId>
    <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
