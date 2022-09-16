@@ -1,4 +1,4 @@
-package ru.egartech.sdk;
+package ru.egartech.sdk.api.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -7,11 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.api.TaskClient;
-import ru.egartech.sdk.api.impl.TaskClientImpl;
+import ru.egartech.sdk.config.TaskClientImplTestConfig;
 import ru.egartech.sdk.dto.task.BindFieldDto;
 import ru.egartech.sdk.dto.task.TaskDto;
 import ru.egartech.sdk.dto.task.TasksDto;
@@ -25,8 +26,8 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes = {TaskClientImpl.class})
-public class TaskClientImplTest {
+@ContextConfiguration(classes = {TaskClientImplTestConfig.class})
+public class TaskClientImplTest extends AbstractSpringBootContext {
 
     @MockBean
     private RestTemplate restTemplate;
