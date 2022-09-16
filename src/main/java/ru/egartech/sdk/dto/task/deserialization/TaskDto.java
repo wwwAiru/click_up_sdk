@@ -10,6 +10,7 @@ import ru.egartech.sdk.dto.task.deserialization.customfield.assigner.AssignerDto
 import ru.egartech.sdk.dto.task.deserialization.customfield.deserializer.CustomFieldStdConverter;
 import ru.egartech.sdk.dto.task.deserialization.customfield.field.CustomField;
 import ru.egartech.sdk.dto.task.deserialization.list.ListDto;
+import ru.egartech.sdk.dto.task.deserialization.status.StatusDto;
 import ru.egartech.sdk.exception.customfield.CustomFieldNotFoundException;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class TaskDto {
 
     @JsonProperty("name")
     private String name;
+
+    @JsonProperty("status")
+    private StatusDto status;
 
     @JsonProperty("subtasks")
     private List<TaskDto> subtasks = new ArrayList<>();
