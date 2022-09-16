@@ -233,8 +233,6 @@ public class Service {
 ## Обновить таску:
 
 ```java
-import ru.egartech.sdk.dto.task.UpdateTaskDto;
-import ru.egartech.sdk.dto.task.customfield.update.Assigner;
 
 public class Service {
 
