@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
 import org.springframework.test.context.ContextConfiguration;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.config.TaskDtoMappingTestConfig;
@@ -17,10 +16,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@AutoConfigureJson
 @ContextConfiguration(classes = TaskDtoMappingTestConfig.class)
 public class TaskDtoMappingTest extends AbstractSpringBootContext {
-
     @Autowired
     ObjectMapper mapper;
 
@@ -68,5 +65,4 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
                     .isEqualTo(30);
         }
     }
-
 }

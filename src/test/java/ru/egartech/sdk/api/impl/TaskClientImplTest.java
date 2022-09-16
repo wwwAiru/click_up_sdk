@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,10 +11,10 @@ import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.api.TaskClient;
 import ru.egartech.sdk.config.TaskClientImplTestConfig;
-import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.dto.task.deserialization.TasksDto;
 import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
+import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -24,9 +22,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 
-
-@ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {TaskClientImplTestConfig.class})
+@ContextConfiguration(classes = TaskClientImplTestConfig.class)
 public class TaskClientImplTest extends AbstractSpringBootContext {
 
     @MockBean

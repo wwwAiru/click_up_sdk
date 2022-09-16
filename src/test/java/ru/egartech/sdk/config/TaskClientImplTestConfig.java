@@ -7,10 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.TaskClient;
 import ru.egartech.sdk.api.impl.TaskClientImpl;
 
-@ContextConfiguration(classes = {
-        RestTemplate.class,
-        ObjectMapper.class,
-})
+@ContextConfiguration(classes = RestTemplate.class)
 public class TaskClientImplTestConfig extends AbstractBaseConfig {
     @Bean
     public TaskClient taskClient(RestTemplate restTemplate, ObjectMapper objectMapper) {
