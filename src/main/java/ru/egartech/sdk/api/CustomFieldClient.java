@@ -1,8 +1,8 @@
 package ru.egartech.sdk.api;
 
 import ru.egartech.sdk.api.impl.CustomFieldClientImpl;
-import ru.egartech.sdk.dto.task.FieldsDto;
-import ru.egartech.sdk.dto.task.TaskDto;
+import ru.egartech.sdk.dto.task.deserialization.customfield.FieldsDto;
+import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 
 /**
  * Интерфейс, объявляющий методы для работы с кастомными филдами в ClickUp

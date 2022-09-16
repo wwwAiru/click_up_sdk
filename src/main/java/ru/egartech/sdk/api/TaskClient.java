@@ -1,7 +1,12 @@
 package ru.egartech.sdk.api;
 
 import ru.egartech.sdk.api.impl.TaskClientImpl;
-import ru.egartech.sdk.dto.task.*;
+import ru.egartech.sdk.dto.task.deserialization.TaskDto;
+import ru.egartech.sdk.dto.task.deserialization.TasksDto;
+import ru.egartech.sdk.dto.task.serialization.CreateTaskDto;
+import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
+import ru.egartech.sdk.dto.task.serialization.RequestTaskDto;
+import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
 
 import java.util.Collection;
 import java.util.List;
@@ -51,7 +56,7 @@ public interface TaskClient {
      * @param listId идентификатор листа, в котором нужно создать задачу.
      * @param createTaskDto объект, на основе не null полей которого будет создаваться таска.
      *
-     * @see CreateTaskDto*/
+     * @see CreateTaskDto */
     TaskDto createTask(int listId, RequestTaskDto createTaskDto);
 
     /**

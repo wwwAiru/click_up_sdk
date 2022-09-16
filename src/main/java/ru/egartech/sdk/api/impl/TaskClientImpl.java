@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.TaskClient;
+import ru.egartech.sdk.dto.task.deserialization.TaskDto;
+import ru.egartech.sdk.dto.task.deserialization.TasksDto;
+import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
+import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
+import ru.egartech.sdk.dto.task.serialization.RequestTaskDto;
 import ru.egartech.sdk.property.UrlProvider;
-import ru.egartech.sdk.dto.task.*;
 
 import java.util.*;
 

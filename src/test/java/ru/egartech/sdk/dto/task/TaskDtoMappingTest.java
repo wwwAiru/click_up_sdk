@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
 import org.springframework.test.context.ContextConfiguration;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.config.TaskDtoMappingTestConfig;
+import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.property.FileProvider;
 
 import java.util.Map;

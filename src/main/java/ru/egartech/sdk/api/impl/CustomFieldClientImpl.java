@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.CustomFieldClient;
 import ru.egartech.sdk.property.UrlProvider;
-import ru.egartech.sdk.dto.task.FieldsDto;
+import ru.egartech.sdk.dto.task.deserialization.customfield.FieldsDto;
 
 import java.util.HashMap;
 import java.util.Map;

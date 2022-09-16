@@ -13,10 +13,10 @@ import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.api.TaskClient;
 import ru.egartech.sdk.config.TaskClientImplTestConfig;
-import ru.egartech.sdk.dto.task.BindFieldDto;
-import ru.egartech.sdk.dto.task.TaskDto;
-import ru.egartech.sdk.dto.task.TasksDto;
-import ru.egartech.sdk.dto.task.UpdateTaskDto;
+import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
+import ru.egartech.sdk.dto.task.deserialization.TaskDto;
+import ru.egartech.sdk.dto.task.deserialization.TasksDto;
+import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
 
 import java.util.Random;
 import java.util.stream.Collectors;
