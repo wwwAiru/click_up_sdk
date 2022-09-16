@@ -1,4 +1,4 @@
-package ru.egartech.sdk;
+package ru.egartech.sdk.property;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
