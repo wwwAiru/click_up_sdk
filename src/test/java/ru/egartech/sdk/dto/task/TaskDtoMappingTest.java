@@ -1,4 +1,4 @@
-package ru.egartech.sdk;
+package ru.egartech.sdk.dto.task;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -7,16 +7,18 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
-import org.springframework.boot.test.context.SpringBootTest;
-import ru.egartech.sdk.dto.task.TaskDto;
+import org.springframework.test.context.ContextConfiguration;
+import ru.egartech.sdk.AbstractSpringBootContext;
+import ru.egartech.sdk.config.TaskDtoMappingTestConfig;
+import ru.egartech.sdk.property.FileProvider;
 
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest(classes = {FileProvider.class})
 @AutoConfigureJson
-public class TaskDtoMappingTest {
+@ContextConfiguration(classes = TaskDtoMappingTestConfig.class)
+public class TaskDtoMappingTest extends AbstractSpringBootContext {
 
     @Autowired
     ObjectMapper mapper;
