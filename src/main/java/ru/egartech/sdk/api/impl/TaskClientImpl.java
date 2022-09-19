@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.TaskClient;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.dto.task.deserialization.TasksDto;
+import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
 import ru.egartech.sdk.dto.task.serialization.RequestTaskDto;
@@ -70,7 +71,7 @@ public class TaskClientImpl implements TaskClient {
     }
 
     @Override
-    public TaskDto updateTask(RequestTaskDto task) {
+    public TaskDto updateTask(UpdateTaskDto task) {
         updateTaskWithoutCustomFields(task);
         updateAllCustomFieldsDto(task.getId(), task.getCustomFields());
         return getTaskById(task.getId(), false);

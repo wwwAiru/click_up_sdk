@@ -67,6 +67,5 @@ public interface TaskClient {
      * @param updateTaskDto - объект, на основе не null полей которого будет обновляться таска (остальные поля будут игнорироваться).
      * @see UpdateTaskDto
      * */
-    TaskDto updateTask(RequestTaskDto updateTaskDto);
-
+    TaskDto updateTask(UpdateTaskDto updateTaskDto);
 }

@@ -35,12 +35,12 @@ public class UpdateTaskDto extends RequestTaskDto {
     @JsonProperty("custom_fields")
     private List<BindFieldDto> customFields = new ArrayList<>();
 
-    public RequestTaskDto bindCustomFields(BindFieldDto... customFields) {
+    public UpdateTaskDto bindCustomFields(BindFieldDto... customFields) {
         this.customFields.addAll(List.of(customFields));
         return this;
     }
 
-    public RequestTaskDto bindCustomFields(List<BindFieldDto> customFields) {
+    public UpdateTaskDto bindCustomFields(List<BindFieldDto> customFields) {
         this.customFields.addAll(customFields);
         return this;
     }
