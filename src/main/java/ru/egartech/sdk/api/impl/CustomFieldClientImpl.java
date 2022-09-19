@@ -18,11 +18,8 @@ public class CustomFieldClientImpl implements CustomFieldClient {
 
     @Override
     public FieldsDto getAccessibleCustomFields(int listId) {
-
         Map<String, Object> uriVariables = new HashMap<>();
-
-        uriVariables.put("list_id", listId);
-
+        uriVariables.put("list_id",listId);
         return restTemplate.getForObject(
                 UrlProvider.GET_ACCESSIBLE_CUSTOM_FIELDS.getUrl(),
                 FieldsDto.class,

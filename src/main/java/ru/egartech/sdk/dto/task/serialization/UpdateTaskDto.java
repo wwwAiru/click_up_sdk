@@ -10,6 +10,9 @@ import ru.egartech.sdk.dto.task.serialization.assigner.Assigner;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.TaskRelationship;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 import static java.util.Objects.isNull;
 
@@ -28,6 +31,19 @@ public class UpdateTaskDto extends RequestTaskDto {
 
     @JsonProperty("assignees")
     private Assigner assignees;
+
+    @JsonProperty("custom_fields")
+    private List<BindFieldDto> customFields = new ArrayList<>();
+
+    public RequestTaskDto bindCustomFields(BindFieldDto... customFields) {
+        this.customFields.addAll(List.of(customFields));
+        return this;
+    }
+
+    public RequestTaskDto bindCustomFields(List<BindFieldDto> customFields) {
+        this.customFields.addAll(customFields);
+        return this;
+    }
 
     public UpdateTaskDto linkTask(String relationshipId, String... taskId) {
         if (isNull(taskId)) {
