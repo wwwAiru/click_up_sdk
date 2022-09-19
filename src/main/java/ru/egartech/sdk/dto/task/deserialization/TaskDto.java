@@ -30,6 +30,9 @@ public class TaskDto {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("parent")
+    private String parent;
+
     @JsonProperty("status")
     private StatusDto status;
 
