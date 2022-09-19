@@ -23,8 +23,14 @@ public class AttachmentFieldDto extends CustomField<List<AttachmentDto>> {
 
     @JsonIgnore
     public String getUrl() {
-        if (getValue().size() > 1) {
+        if (value == null) {
+            return null;
+        }
+        if (value.size() > 1) {
             throw new ApplicationException("Элементов в коллекций больше чем 1");
+        }
+        if (value.isEmpty()) {
+            return null;
         }
         AttachmentDto attachment = CollectionUtils.firstElement(getValue());
         return attachment == null ? null : attachment.getUrl();
