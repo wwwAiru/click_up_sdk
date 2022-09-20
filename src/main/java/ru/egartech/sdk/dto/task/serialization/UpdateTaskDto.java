@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
+import lombok.NonNull;
+import lombok.experimental.SuperBuilder;
 import ru.egartech.sdk.dto.task.serialization.assigner.Assigner;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.TaskRelationship;
@@ -17,12 +17,12 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 import static java.util.Objects.isNull;
 
 @Data
-@Accessors(chain = true)
-@RequiredArgsConstructor(staticName = "ofTaskId")
+@SuperBuilder
 @JsonInclude(Include.NON_NULL)
 @EqualsAndHashCode(callSuper = true)
 public class UpdateTaskDto extends RequestTaskDto {
 
+    @NonNull
     private final String id;
     private String name;
 
@@ -33,54 +33,59 @@ public class UpdateTaskDto extends RequestTaskDto {
     private Assigner assignees;
 
     @JsonProperty("custom_fields")
-    private List<BindFieldDto> customFields = new ArrayList<>();
+    private List<BindFieldDto> customFields;
 
-    public UpdateTaskDto bindCustomFields(BindFieldDto... customFields) {
-        this.customFields.addAll(List.of(customFields));
-        return this;
-    }
-
-    public UpdateTaskDto bindCustomFields(List<BindFieldDto> customFields) {
-        this.customFields.addAll(customFields);
-        return this;
-    }
-
-    public UpdateTaskDto linkTask(String relationshipId, String... taskId) {
-        if (isNull(taskId)) {
-            return this;
+    public abstract static class UpdateTaskDtoBuilder<C extends UpdateTaskDto, B extends UpdateTaskDtoBuilder<C, B>>
+            extends RequestTaskDtoBuilder<C, B> {
+        public B customFields() {
+            if (isNull(this.customFields)) {
+                this.customFields = new ArrayList<>();
+            }
+            return self();
         }
-        bindCustomFields(BindFieldDto.of(
-                relationshipId,
-                TaskRelationship.create().link(taskId))
-        );
-        return this;
-    }
 
-    public UpdateTaskDto unlinkTask(String relationshipId, String... taskId) {
-        if (isNull(taskId)) {
-            return this;
+        public B customFields(BindFieldDto... customFields) {
+            customFields();
+            this.customFields.addAll(List.of(customFields));
+            return self();
         }
-        bindCustomFields(BindFieldDto.of(
-                relationshipId,
-                TaskRelationship.create().unlink(taskId))
-        );
-        return this;
-    }
 
-    public UpdateTaskDto assignTo(String... assignerId) {
-        if (isNull(assignerId)) {
-            return this;
+        public B customFields(List<BindFieldDto> customFields) {
+            customFields();
+            this.customFields.addAll(customFields);
+            return self();
         }
-        setAssignees(Assigner.of().link(assignerId));
-        return this;
-    }
 
-    public UpdateTaskDto unassign(String... assignerId) {
-        if (isNull(assignerId)) {
-            return this;
+        public B linkTask(String relationshipId, String... taskId) {
+            if (isNull(taskId)) {
+                return self();
+            }
+            customFields(BindFieldDto.of(relationshipId, TaskRelationship.create().link(taskId)));
+            return self();
         }
-        setAssignees(Assigner.of().unlink(assignerId));
-        return this;
-    }
 
+        public B unlinkTask(String relationshipId, String... taskId) {
+            if (isNull(taskId)) {
+                return self();
+            }
+            customFields(BindFieldDto.of(relationshipId, TaskRelationship.create().unlink(taskId)));
+            return self();
+        }
+
+        public B assignTo(String... assignerId) {
+            if (isNull(assignerId)) {
+                return self();
+            }
+            this.assignees = (Assigner.of().link(assignerId));
+            return self();
+        }
+
+        public B unassign(String... assignerId) {
+            if (isNull(assignerId)) {
+                return self();
+            }
+            this.assignees = (Assigner.of().unlink(assignerId));
+            return self();
+        }
+    }
 }

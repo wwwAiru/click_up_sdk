@@ -17,7 +17,6 @@ import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
@@ -71,15 +70,15 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
         int randomBindFieldDtoCount = new Random().nextInt(10);
 
         // when
-        taskClient.updateTask(UpdateTaskDto
-                .ofTaskId("any")
-                .bindCustomFields(
-                        Stream
-                                .generate(() -> BindFieldDto.of("", ""))
-                                .limit(randomBindFieldDtoCount)
-                                .collect(Collectors.toList())
-                )
-        );
+        UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
+                .id("any")
+                .customFields(Stream
+                        .generate(() -> BindFieldDto.of("", ""))
+                        .limit(randomBindFieldDtoCount)
+                        .toList())
+                .build();
+
+        taskClient.updateTask(updateTaskDto);
 
         // then
         verify(restTemplate, times(1)).put(any(), any(), anyMap());
