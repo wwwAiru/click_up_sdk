@@ -20,8 +20,6 @@ public class AuthorizationProperties {
     private List<String> tokens = new ArrayList<>();
 
     public String pullToken() {
-        String pulledToken = tokens.get(index % tokens.size());
-        index++;
-        return pulledToken;
+        return tokens.get(index++ % tokens.size());
     }
 }
