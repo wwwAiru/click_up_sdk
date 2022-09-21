@@ -165,7 +165,6 @@ public class Service {
                 .operator(Operator.EQUALS.getOperator()) // Можно опустить, по дефолту EQUALS
                 .value(egarId)
                 .build();
-
         return taskClient.getTasksByCustomField(listId, customFieldRequest).get();
     }
 }
@@ -226,7 +225,7 @@ public class Service {
     public TaskDto linkTaskTo(String taskId, String assignerId) {
         UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
                 .id("task_id")
-                .assignTo("assigner_id")
+                .assignes(Assigner.link("assigner_id"))
                 .build();
                 
         return taskClient.updateTask(updateTaskDto);
@@ -244,7 +243,9 @@ public class Service {
     public TaskDto linkToTask(String taskId, String newTaskId) {
         UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
                 .id("task_id")
-                .linkTask("to_relationship_field_id", "task_id_1", "task_id_2")
+                .customFields(List.of(
+                        BindFieldDto.linkTask("to_relationship_field_id", "task_id_1", "task_id_2")
+                ))
                 .build();
 
         return taskClient.updateTask(updateTaskDto);
@@ -256,7 +257,9 @@ public class Service {
 ## Обновить таску:
 
 ```java
+import ru.egartech.sdk.dto.task.serialization.assigner.Assigner;
 import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
+import ru.egartech.sdk.dto.task.serialization.customfield.update.BindFieldDto;
 
 public class Service {
     private final TaskClient taskClient;
@@ -272,14 +275,14 @@ public class Service {
 
         List<BindFieldDto> customFields = List.of(
                 // добавить кастомное поле
-                BindFieldDto.of("field_id", LocalDate.now())
+                BindFieldDto.of("field_id", LocalDate.now()),
+                BindFieldDto.linkTask("to_relationship_field_id", "task_id_1", "task_id_2")
         );
 
         UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
                 .description("Сотрудник был обновлён! " + LocalDateTime.now())
                 // ids профилей пользователей, которые утверждаются задачи
-                .assignTo("assigner_id_1", "assigner_id_2")
-                .linkTask("to_relationship_field_id", "task_id_1", "task_id_2")
+                .assignes(Assigner.link("assigner_id_1", "assigner_id_2"))
                 .customFields(customField)
                 .build();
 
