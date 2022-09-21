@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.property.FileProvider;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@ContextConfiguration(classes = {ObjectMapper.class, FileProvider.class})
+@DisplayName("Тестирование TaskDtoMapper")
 public class TaskDtoMappingTest extends AbstractSpringBootContext {
     @Autowired
     ObjectMapper mapper;
@@ -24,12 +23,12 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
     private FileProvider fileProvider;
 
     @Nested
-    @DisplayName("Deserialize")
+    @DisplayName("Тестирование десериализации")
     class Deserialize {
 
         @SneakyThrows
         @Test
-        @DisplayName("Verify that task is deserializing correctly")
+        @DisplayName("Тестирование того, что задача десериализуется правильно")
         public void taskDtoDeserializeTest() {
             // given
             TaskDto taskById;
@@ -46,7 +45,7 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
 
         @SneakyThrows
         @Test
-        @DisplayName("Verify that custom fields in task is deserializing correctly")
+        @DisplayName("Тестирование того, что кастомные поля десериализуются правильно")
         public void customFieldsDeserializeTest() {
             // given
             TaskDto taskById;

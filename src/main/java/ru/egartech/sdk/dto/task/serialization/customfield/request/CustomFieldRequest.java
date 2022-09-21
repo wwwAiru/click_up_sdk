@@ -2,13 +2,11 @@ package ru.egartech.sdk.dto.task.serialization.customfield.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import lombok.experimental.Accessors;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor(staticName = "create")
-@Accessors(chain = true)
 public class CustomFieldRequest<T> {
     @JsonProperty("field_id")
     private String fieldId;
