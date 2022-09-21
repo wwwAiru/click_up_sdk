@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 
 @Component
 public class FileProvider {
-
     @Value("${clickup.response.json.file-name.task-by-id}")
     private String taskByIdJsonName;
 
@@ -25,5 +24,4 @@ public class FileProvider {
         return ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX
                 .concat(taskByCustomFieldsJsonName));
     }
-
 }

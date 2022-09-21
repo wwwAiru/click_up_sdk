@@ -18,7 +18,6 @@ import java.util.Map;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FieldsDto {
-
     @JsonProperty("fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
     private Map<String, CustomField<?>> customFields = new HashMap<>();
@@ -30,5 +29,4 @@ public class FieldsDto {
 
         return (T) customField;
     }
-
 }

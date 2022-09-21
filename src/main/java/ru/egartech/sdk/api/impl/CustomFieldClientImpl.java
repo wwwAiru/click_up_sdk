@@ -13,7 +13,6 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class CustomFieldClientImpl implements CustomFieldClient {
-
     private final RestTemplate restTemplate;
 
     @Override
@@ -25,5 +24,4 @@ public class CustomFieldClientImpl implements CustomFieldClient {
                 FieldsDto.class,
                 uriVariables);
     }
-
 }

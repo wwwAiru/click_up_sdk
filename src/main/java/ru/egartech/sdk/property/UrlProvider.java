@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum UrlProvider {
-
     BASE_URL("https://api.clickup.com/api/v2"),
     SEARCH_TASK_BY_ID_URL(BASE_URL.getUrl() + "/task/{id}?include_subtasks={include_subtasks}"),
     CREATE_TASK(BASE_URL.getUrl() + "/list/{list_id}/task"),
@@ -16,5 +15,4 @@ public enum UrlProvider {
 
     @Getter
     private final String url;
-
 }

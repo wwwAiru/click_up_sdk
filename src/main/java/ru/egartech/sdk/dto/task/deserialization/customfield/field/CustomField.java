@@ -36,9 +36,7 @@ import ru.egartech.sdk.dto.task.deserialization.customfield.field.text.TextField
 public abstract class CustomField<T> {
 
     protected String id;
-
     protected String name;
-
     protected T value;
 
 }

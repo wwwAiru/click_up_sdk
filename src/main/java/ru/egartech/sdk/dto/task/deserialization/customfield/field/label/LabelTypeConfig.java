@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LabelTypeConfig {
-
     @JsonProperty("options")
     private List<LabelOptionDto> labelOptionDtos = new ArrayList<>();
 
@@ -28,5 +27,4 @@ public class LabelTypeConfig {
                 .findFirst()
                 .orElseThrow(CustomFieldValueNotFoundException::new);
     }
-
 }

@@ -12,7 +12,6 @@ import ru.egartech.sdk.property.AuthorizationProperties;
 @ConditionalOnProperty(prefix = "clickup.api", name = "tokens", matchIfMissing = true)
 @EnableConfigurationProperties(value = AuthorizationProperties.class)
 public class RestTemplateAutoConfiguration {
-
     @Bean
     public RestTemplate restTemplate(AuthorizationProperties properties) {
         RestTemplate restTemplate = new RestTemplate();
@@ -24,5 +23,4 @@ public class RestTemplateAutoConfiguration {
     public AuthorizationRequestInterceptor authorizationRequestInterceptor(AuthorizationProperties properties) {
         return new AuthorizationRequestInterceptor(properties);
     }
-
 }
