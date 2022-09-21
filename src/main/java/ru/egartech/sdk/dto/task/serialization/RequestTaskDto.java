@@ -16,6 +16,5 @@ public abstract class RequestTaskDto {
     private String status;
 
     public abstract String getId();
-
     public abstract String getName();
 }

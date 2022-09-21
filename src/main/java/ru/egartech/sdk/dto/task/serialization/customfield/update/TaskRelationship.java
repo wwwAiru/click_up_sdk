@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(staticName = "create")
 public class TaskRelationship {
-
     @JsonProperty("add")
     private List<String> toAdd = new ArrayList<>();
     @JsonProperty("rem")

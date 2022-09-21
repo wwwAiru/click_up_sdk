@@ -3,7 +3,6 @@ package ru.egartech.sdk.exception.customfield;
 import ru.egartech.sdk.exception.ApplicationException;
 
 public class CustomFieldException extends ApplicationException {
-
     public CustomFieldException() {
         super();
     }

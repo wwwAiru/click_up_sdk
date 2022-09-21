@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 public class DropdownOption {
 
     private String id;
-
     private String name;
 
     @JsonProperty("orderindex")

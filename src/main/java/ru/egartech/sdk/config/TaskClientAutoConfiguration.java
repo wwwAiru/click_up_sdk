@@ -14,7 +14,6 @@ import ru.egartech.sdk.api.impl.TaskClientImpl;
 @ConditionalOnClass(TaskClient.class)
 @RequiredArgsConstructor
 public class TaskClientAutoConfiguration {
-
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -23,5 +22,4 @@ public class TaskClientAutoConfiguration {
     public TaskClient taskClient() {
         return new TaskClientImpl(restTemplate, objectMapper);
     }
-
 }

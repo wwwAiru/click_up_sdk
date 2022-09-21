@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor(staticName = "create")
 @Accessors(chain = true)
 public class CustomFieldRequest<T> {
-
     @JsonProperty("field_id")
     private String fieldId;
 
@@ -27,5 +26,4 @@ public class CustomFieldRequest<T> {
         @Getter
         private final String operator;
     }
-
 }

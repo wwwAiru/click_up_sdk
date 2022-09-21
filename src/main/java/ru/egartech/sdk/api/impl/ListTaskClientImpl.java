@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class ListTaskClientImpl extends TaskClientImpl implements ListTaskClient {
-
     private final SearchListsProperties properties;
 
     public ListTaskClientImpl(RestTemplate restTemplate, ObjectMapper mapper, SearchListsProperties properties) {
@@ -24,5 +23,4 @@ public class ListTaskClientImpl extends TaskClientImpl implements ListTaskClient
     public List<TasksDto> getTasksByCustomFields(CustomFieldRequest<?>... customFieldRequest) {
         return getTasksByCustomFields(properties.getIds(), customFieldRequest);
     }
-
 }

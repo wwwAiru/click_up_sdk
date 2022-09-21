@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TasksDto {
-
     @JsonProperty("tasks")
     private List<TaskDto> tasks = new ArrayList<>();
 
@@ -34,5 +33,4 @@ public class TasksDto {
                         () -> new TaskNotFoundException("tasks")
                 );
     }
-
 }

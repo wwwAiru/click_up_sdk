@@ -18,7 +18,6 @@ import java.util.Objects;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DropdownTypeConfig {
-
     @JsonProperty("options")
     private List<DropdownOption> labelOptions = new ArrayList<>();
 
@@ -28,5 +27,4 @@ public class DropdownTypeConfig {
                 .findFirst()
                 .orElseThrow(CustomFieldValueNotFoundException::new);
     }
-
 }

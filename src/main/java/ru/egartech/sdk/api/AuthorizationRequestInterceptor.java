@@ -11,7 +11,6 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 public class AuthorizationRequestInterceptor implements ClientHttpRequestInterceptor {
-
     private final AuthorizationProperties properties;
 
     @Override
@@ -19,5 +18,4 @@ public class AuthorizationRequestInterceptor implements ClientHttpRequestInterce
         request.getHeaders().add("Authorization", properties.pullToken());
         return execution.execute(request, body);
     }
-
 }

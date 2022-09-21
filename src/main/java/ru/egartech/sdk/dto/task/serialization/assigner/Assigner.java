@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 @Builder
 public class Assigner {
-
     @JsonProperty("add")
     @Singular("add")
     private List<String> toAdd;
@@ -31,5 +30,4 @@ public class Assigner {
                 .toRemove(List.of(args))
                 .build();
     }
-
 }
