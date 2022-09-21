@@ -110,8 +110,7 @@ public class Service {
     private final String myNumberFieldId = "856d3fd6-b982-4085-aa67-65d60bf41bb7";
 
     public TaskDto findMyTask(int number) {
-        CustomFieldRequest<Integer> customFieldRequest = CustomFieldRequest
-                .builder()
+        CustomFieldRequest<Integer> customFieldRequest = CustomFieldRequest.<String>builder()
                 .fieldId(myNumberFieldId)
                 .value(number)
                 .build();
@@ -161,7 +160,7 @@ public class Service {
     private final TaskClient taskClient;
 
     public TaskDto getTaskByListIdAndEgarId(int listId, String egarId) {
-        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.builder()
+        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.<String>builder()
                 .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
                 .operator(Operator.EQUALS.getOperator()) // Можно опустить, по дефолту EQUALS
                 .value(egarId)
@@ -180,7 +179,7 @@ public class Service {
     private final ListTaskClient taskClient; 
 
     public TaskDto getTaskByEgarIdInMultipleLists(String egarId) {
-        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.builder()
+        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.<String>builder()
                 .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
                 .value(egarId)
                 .build();
@@ -257,31 +256,33 @@ public class Service {
 ## Обновить таску:
 
 ```java
+import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
+
 public class Service {
     private final TaskClient taskClient;
 
     public TaskDto linkUnlinkSickDay(String listId, String egarId, String sickDayId) {
-        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest
-                .create()
-                .setFieldId("836c9684-0c71-4714-aff2-900b0ded0685")
-                .setValue(egarId);
+        CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.<String>builder()
+                .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
+                .value(egarId)
+                .build();
 
         // Получить пользователя по кастом айди
-        TaskDto user = taskClient.getTasksByCustomFields(123, customFieldRequest).getFirstTask(); 
+        TaskDto user = taskClient.getTasksByCustomFields(123, customFieldRequest).getFirstTask();
 
         List<BindFieldDto> customFields = List.of(
                 // добавить кастомное поле
                 BindFieldDto.of("field_id", LocalDate.now())
-       );
+        );
 
         UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
                 .description("Сотрудник был обновлён! " + LocalDateTime.now())
                 // ids профилей пользователей, которые утверждаются задачи
-                .assignTo("assigner_id_1", "assigner_id_2") 
+                .assignTo("assigner_id_1", "assigner_id_2")
                 .linkTask("to_relationship_field_id", "task_id_1", "task_id_2")
                 .customFields(customField)
                 .build();
-        
+
         return taskClient.updateTask(updateTaskDto);
     }
 }
