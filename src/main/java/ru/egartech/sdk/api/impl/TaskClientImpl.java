@@ -25,7 +25,8 @@ public class TaskClientImpl implements TaskClient {
     private final ObjectMapper mapper;
 
     @Override
-    public TaskDto getTaskById(String id, Boolean includeSubtasks) {
+    public TaskDto getTaskById(String id,
+                               Boolean includeSubtasks) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("id", id);
         uriVariables.put("include_subtasks", includeSubtasks);
@@ -37,9 +38,12 @@ public class TaskClientImpl implements TaskClient {
 
     @SneakyThrows
     @Override
-    public TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest) {
+    public TasksDto getTasksByCustomFields(int listId,
+                                           Boolean includeSubtasks,
+                                           CustomFieldRequest<?>... customFieldRequest) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("list_id", listId);
+        uriVariables.put("include_subtasks", includeSubtasks);
         uriVariables.put("custom_field_req", mapper.writeValueAsString(customFieldRequest));
         return restTemplate.getForObject(
                 UrlProvider.SEARCH_TASKS_BY_CUSTOM_FIELDS_URL.getUrl(),
@@ -49,11 +53,12 @@ public class TaskClientImpl implements TaskClient {
 
     @Override
     public List<TasksDto> getTasksByCustomFields(Collection<Integer> lists,
+                                                 Boolean includeSubtasks,
                                                  CustomFieldRequest<?>... customFieldRequest) {
         return lists
                 .stream()
                 .filter(Objects::nonNull)
-                .map(id -> getTasksByCustomFields(id, customFieldRequest))
+                .map(id -> getTasksByCustomFields(id, includeSubtasks, customFieldRequest))
                 .filter(td -> !td.getTasks().isEmpty())
                 .toList();
     }

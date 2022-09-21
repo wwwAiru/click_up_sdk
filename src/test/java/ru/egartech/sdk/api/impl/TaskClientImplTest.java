@@ -57,7 +57,7 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
         // when
         when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(tasksDto);
         // then
-        taskClient.getTasksByCustomFields(123);
+        taskClient.getTasksByCustomFields(123, false);
         verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
     }
 

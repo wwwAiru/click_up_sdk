@@ -26,6 +26,6 @@ public interface ListTaskClient extends TaskClient {
      *                           оператора сравнения и значения поля.
      * @see CustomFieldRequest
      */
-    List<TasksDto> getTasksByCustomFields(CustomFieldRequest<?>... customFieldRequest);
+    List<TasksDto> getTasksByCustomFields(Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest);
 
 }

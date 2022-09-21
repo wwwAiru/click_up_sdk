@@ -20,7 +20,7 @@ public class ListTaskClientImpl extends TaskClientImpl implements ListTaskClient
     }
 
     @Override
-    public List<TasksDto> getTasksByCustomFields(CustomFieldRequest<?>... customFieldRequest) {
-        return getTasksByCustomFields(properties.getIds(), customFieldRequest);
+    public List<TasksDto> getTasksByCustomFields(Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest) {
+        return getTasksByCustomFields(properties.getIds(), includeSubtasks, customFieldRequest);
     }
 }

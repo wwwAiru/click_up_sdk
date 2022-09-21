@@ -35,7 +35,7 @@ public interface TaskClient {
      *                           оператора сравнения и значения поля.
      * @see CustomFieldRequest
      */
-    TasksDto getTasksByCustomFields(int listId, CustomFieldRequest<?>... customFieldRequest);
+    TasksDto getTasksByCustomFields(int listId, Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest);
 
 
     /**
@@ -48,7 +48,7 @@ public interface TaskClient {
      *                           оператора сравнения и значения поля.
      * @see CustomFieldRequest
      */
-    List<TasksDto> getTasksByCustomFields(Collection<Integer> lists, CustomFieldRequest<?>... customFieldRequest);
+    List<TasksDto> getTasksByCustomFields(Collection<Integer> lists, Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest);
 
     /**
      * Делает запрос в ClickUp и создаёт новую таску, возвращает {@link TaskDto} (только что созданная таска).
