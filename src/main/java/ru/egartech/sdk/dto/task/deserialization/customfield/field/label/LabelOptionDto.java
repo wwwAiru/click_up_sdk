@@ -22,9 +22,9 @@ public class LabelOptionDto {
      * Используется как дженерик тип в {@link LabelsFieldDto}.
      * Используется в списке из опций {@link LabelTypeConfig}.
      *
+     * @param id идентификатор в виде строки
      * @see LabelTypeConfig
      * @see LabelsFieldDto
-     * @param id идентификатор в виде строки
      */
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public LabelOptionDto(String id) {

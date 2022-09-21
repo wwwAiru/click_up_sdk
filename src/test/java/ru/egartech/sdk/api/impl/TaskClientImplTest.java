@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.api.TaskClient;
-import ru.egartech.sdk.config.TaskClientImplTestConfig;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.dto.task.deserialization.TasksDto;
 import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
@@ -21,9 +20,12 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = TaskClientImplTestConfig.class)
+@ContextConfiguration(classes = {
+        TaskClientImpl.class,
+        RestTemplate.class,
+        ObjectMapper.class,
+})
 public class TaskClientImplTest extends AbstractSpringBootContext {
-
     @MockBean
     private RestTemplate restTemplate;
 
@@ -36,13 +38,11 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
     @SneakyThrows
     @Test
     @DisplayName("Verify that restTemplate in getTaskById() has been called")
-    public void taskByIdRestTemplateCallTest() {
+    public void taskByIdRestTemplateTest() {
         // given
         TaskDto taskDto = new TaskDto();
-
         // when
         when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(taskDto);
-
         // then
         taskClient.getTaskById("id", false);
         verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
@@ -54,10 +54,8 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
     public void tasksByCustomFieldsRestTemplateTest() {
         // given
         TasksDto tasksDto = new TasksDto();
-
         // when
         when(restTemplate.getForObject(any(), any(), anyMap())).thenReturn(tasksDto);
-
         // then
         taskClient.getTasksByCustomFields(123);
         verify(restTemplate, times(1)).getForObject(anyString(), any(), anyMap());
@@ -68,7 +66,6 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
     public void updateTaskRestTemplateTest() {
         // given
         int randomBindFieldDtoCount = new Random().nextInt(10);
-
         // when
         UpdateTaskDto updateTaskDto = UpdateTaskDto.builder()
                 .id("any")
@@ -79,11 +76,9 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
                 .build();
 
         taskClient.updateTask(updateTaskDto);
-
         // then
         verify(restTemplate, times(1)).put(any(), any(), anyMap());
         verify(restTemplate, times(1)).getForObject(any(), any(), anyMap());
         verify(restTemplate, times(randomBindFieldDtoCount)).postForObject(any(), any(), any(), anyMap());
     }
-
 }

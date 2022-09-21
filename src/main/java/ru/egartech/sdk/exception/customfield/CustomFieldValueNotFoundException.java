@@ -1,6 +1,6 @@
 package ru.egartech.sdk.exception.customfield;
 
-public class CustomFieldValueNotFoundException extends CustomFieldException{
+public class CustomFieldValueNotFoundException extends CustomFieldException {
     public CustomFieldValueNotFoundException() {
         super();
     }

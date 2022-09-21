@@ -71,7 +71,7 @@ public class TaskDto {
      * Возвращает список кастомных полей для последующего каста. Неактуален в связи с наличием метода {@link #customField(String field_id)}.
      *
      * @see #customField(String field_id)
-     * */
+     */
     @Deprecated
     public Map<String, CustomField<?>> getCustomFields() {
         return customFields;

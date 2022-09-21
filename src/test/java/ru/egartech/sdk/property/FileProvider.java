@@ -1,13 +1,13 @@
 package ru.egartech.sdk.property;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-@Configuration
+@Component
 public class FileProvider {
 
     @Value("${clickup.response.json.file-name.task-by-id}")

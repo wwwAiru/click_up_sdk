@@ -1,29 +1,35 @@
 package ru.egartech.sdk.dto.task.serialization.assigner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Singular;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@NoArgsConstructor(staticName = "of")
+@Builder
 public class Assigner {
 
     @JsonProperty("add")
-    private List<String> toAdd = new ArrayList<>();
-    @JsonProperty("rem")
-    private List<String> toRemove = new ArrayList<>();
+    @Singular("add")
+    private List<String> toAdd;
 
-    public Assigner link(String... args) {
-        toAdd = List.of(args);
-        return this;
+    @JsonProperty("rem")
+    @Singular("remove")
+    private List<String> toRemove;
+
+    public static Assigner link(@NonNull String... args) {
+        return Assigner.builder()
+                .toAdd(List.of(args))
+                .build();
     }
 
-    public Assigner unlink(String... args) {
-        toRemove = List.of(args);
-        return this;
+    public static Assigner unlink(@NonNull String... args) {
+        return Assigner.builder()
+                .toRemove(List.of(args))
+                .build();
     }
 
 }

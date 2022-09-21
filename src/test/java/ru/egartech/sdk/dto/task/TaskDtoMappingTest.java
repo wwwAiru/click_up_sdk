@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import ru.egartech.sdk.AbstractSpringBootContext;
-import ru.egartech.sdk.config.TaskDtoMappingTestConfig;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.property.FileProvider;
 
@@ -16,7 +15,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@ContextConfiguration(classes = TaskDtoMappingTestConfig.class)
+@ContextConfiguration(classes = {ObjectMapper.class, FileProvider.class})
 public class TaskDtoMappingTest extends AbstractSpringBootContext {
     @Autowired
     ObjectMapper mapper;
@@ -34,10 +33,8 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
         public void taskDtoDeserializeTest() {
             // given
             TaskDto taskById;
-
             // when
             taskById = mapper.readValue(fileProvider.getTaskByIdFile(), TaskDto.class);
-
             // then
             assertThat(taskById)
                     .isNotNull()
@@ -53,10 +50,8 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
         public void customFieldsDeserializeTest() {
             // given
             TaskDto taskById;
-
             // when
             taskById = mapper.readValue(fileProvider.getTaskByIdFile(), TaskDto.class);
-
             // then
             assertThat(taskById)
                     .extracting(TaskDto::getCustomFields)

@@ -33,7 +33,7 @@ public class DropdownOption {
      * @see DropdownTypeConfig
      */
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public DropdownOption(@JsonProperty("value")int value) {
+    public DropdownOption(@JsonProperty("value") int value) {
         this.value = value;
     }
 
