@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.AbstractSpringBootContext;
 import ru.egartech.sdk.api.TaskClient;
@@ -20,11 +19,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = {
-        TaskClientImpl.class,
-        RestTemplate.class,
-        ObjectMapper.class,
-})
+@DisplayName("Моковое тестирование TaskClientImpl")
 public class TaskClientImplTest extends AbstractSpringBootContext {
     @MockBean
     private RestTemplate restTemplate;
@@ -37,7 +32,7 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
 
     @SneakyThrows
     @Test
-    @DisplayName("Verify that restTemplate in getTaskById() has been called")
+    @DisplayName("Тестирование, что restTemplate в методе getTaskById был вызван")
     public void taskByIdRestTemplateTest() {
         // given
         TaskDto taskDto = new TaskDto();
@@ -50,7 +45,7 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
 
     @SneakyThrows
     @Test
-    @DisplayName("Verify that restTemplate in getTasksByCustomField() has been called")
+    @DisplayName("Тестирование, что restTemplate в методе getTasksByCustomField был вызван")
     public void tasksByCustomFieldsRestTemplateTest() {
         // given
         TasksDto tasksDto = new TasksDto();
@@ -62,7 +57,7 @@ public class TaskClientImplTest extends AbstractSpringBootContext {
     }
 
     @Test
-    @DisplayName("Verify that restTemplate in updateTask() has been called 2+N times")
+    @DisplayName("Тестирование, что restTemplate в методе updateTask был вызван 2+N раза")
     public void updateTaskRestTemplateTest() {
         // given
         int randomBindFieldDtoCount = new Random().nextInt(10);
