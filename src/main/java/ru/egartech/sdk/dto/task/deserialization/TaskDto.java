@@ -47,6 +47,9 @@ public class TaskDto {
     @JsonProperty("date_closed")
     private String dateClosed;
 
+    @JsonProperty("due_date")
+    private String dueDate;
+
     @JsonProperty("subtasks")
     private List<TaskDto> subtasks = new ArrayList<>();
 

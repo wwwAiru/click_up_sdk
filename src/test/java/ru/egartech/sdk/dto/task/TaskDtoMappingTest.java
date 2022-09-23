@@ -45,6 +45,10 @@ public class TaskDtoMappingTest extends AbstractSpringBootContext {
         assertThat(taskById)
                 .extracting(TaskDto::getDateClosed)
                 .isEqualTo(null);
+        assertThat(taskById)
+                .extracting(TaskDto::getDueDate)
+                .isEqualTo("1663808400000");
+
     }
 
     @SneakyThrows
