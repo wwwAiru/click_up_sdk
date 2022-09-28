@@ -15,7 +15,6 @@ import java.util.List;
 @Validated
 public class AuthorizationProperties {
     private int index = 0;
-
     @NotEmpty
     private List<String> tokens = new ArrayList<>();
 

@@ -14,7 +14,6 @@ public class Assigner {
     @JsonProperty("add")
     @Singular("add")
     private List<String> toAdd;
-
     @JsonProperty("rem")
     @Singular("remove")
     private List<String> toRemove;

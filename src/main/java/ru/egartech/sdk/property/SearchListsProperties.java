@@ -11,7 +11,5 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "clickup.search-list")
 public class SearchListsProperties {
-
     private List<Integer> ids = new ArrayList<>();
-
 }

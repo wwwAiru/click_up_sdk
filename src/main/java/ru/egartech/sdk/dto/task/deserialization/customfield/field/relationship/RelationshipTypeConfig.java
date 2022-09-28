@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RelationshipTypeConfig {
-
     @JsonProperty(value = "subcategory_id")
     private int subcategoryId;
-
 }

@@ -114,7 +114,7 @@ public class Service {
                 .fieldId(myNumberFieldId)
                 .value(number)
                 .build();
-        
+
         return client.getTasksByCustomFields(
                 List.of(12345678, 12345679, 12345610, 12345611, 12345123),
                 customFieldRequest
@@ -175,16 +175,16 @@ public class Service {
 ```java
 public class Service {
     // ListTaskClient подтягивает listids из properties
-    private final ListTaskClient taskClient; 
+    private final ListTaskClient taskClient;
 
     public TaskDto getTaskByEgarIdInMultipleLists(String egarId) {
         CustomFieldRequest<String> customFieldRequest = CustomFieldRequest.<String>builder()
                 .fieldId("836c9684-0c71-4714-aff2-900b0ded0685")
                 .value(egarId)
                 .build();
-        
+
         List<TasksDto> uncheckedTasks = taskClient.getTasksByCustomFields(customFieldRequest);
-        
+
         // Если нужное поле повторяется в нескольких тасках, находящихся в разных листах, 
         // нужно корректно корректно это обработать (и иметь ввиду такую возможность).
         // В данном примере вернуться больше одной таски не должно, а потому - если таска
@@ -210,7 +210,7 @@ public class Service {
                 .description("Новый сотрудник, контракт до: 09.09.2023")
                 .status("новый")
                 .build();
-        
+
         return client.createTask(listId, createTaskDto);
     }
 }
@@ -227,7 +227,7 @@ public class Service {
                 .id("task_id")
                 .assignes(Assigner.link("assigner_id"))
                 .build();
-                
+
         return taskClient.updateTask(updateTaskDto);
     }
 }

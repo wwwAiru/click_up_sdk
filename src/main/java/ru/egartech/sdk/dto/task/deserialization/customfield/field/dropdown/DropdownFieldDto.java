@@ -16,8 +16,6 @@ import ru.egartech.sdk.dto.task.deserialization.customfield.field.CustomField;
 @EqualsAndHashCode(callSuper = true)
 @JsonDeserialize(converter = DropdownFieldConverter.class)
 public class DropdownFieldDto extends CustomField<DropdownOption> {
-
     @JsonProperty(value = "type_config")
     private DropdownTypeConfig dropdownTypeConfig;
-
 }

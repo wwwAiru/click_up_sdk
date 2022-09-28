@@ -13,10 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApiErrorDto {
-
     @JsonProperty("class")
     private String propertyClass;
     private String message;
     private String milliseconds;
-
 }

@@ -22,15 +22,11 @@ public class TasksDto {
 
     @JsonIgnore
     public TaskDto getFirstTask() {
-
         if (tasks.size() > 1) {
             throw new ApplicationException("Задач больше чем одна");
         }
-
         return tasks.stream()
                 .findFirst()
-                .orElseThrow(
-                        () -> new TaskNotFoundException("tasks")
-                );
+                .orElseThrow(() -> new TaskNotFoundException("tasks"));
     }
 }

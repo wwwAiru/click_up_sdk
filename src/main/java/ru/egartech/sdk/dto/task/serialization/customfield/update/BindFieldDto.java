@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @RequiredArgsConstructor(staticName = "of")
 public class BindFieldDto {
-
     private final String fieldId;
     private final Object value;
 

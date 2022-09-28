@@ -10,15 +10,12 @@ import lombok.*;
 public class CustomFieldRequest<T> {
     @JsonProperty("field_id")
     private String fieldId;
-
     @Builder.Default
     private String operator = Operator.EQUALS.getOperator();
-
     private T value;
 
     @RequiredArgsConstructor
     public enum Operator {
-
         EQUALS("=");
 
         @Getter

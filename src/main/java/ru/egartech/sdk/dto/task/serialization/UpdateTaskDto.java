@@ -19,19 +19,14 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @EqualsAndHashCode(callSuper = true)
 public class UpdateTaskDto extends RequestTaskDto {
-
     @NonNull
     private final String id;
     private String name;
-
     @JsonProperty("custom_id")
     private String customId;
-
     @JsonProperty("assignees")
     private Assigner assignees;
-
     @JsonProperty("custom_fields")
     @Singular
     private List<BindFieldDto> customFields;
-
 }

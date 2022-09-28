@@ -20,8 +20,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(converter = LabelFieldConverter.class)
 public class LabelsFieldDto extends CustomField<List<LabelOptionDto>> {
-
     @JsonProperty(value = "type_config")
     private LabelTypeConfig labelTypeConfig;
-
 }

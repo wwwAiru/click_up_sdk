@@ -12,10 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AssignerDto {
-
     private String id;
     private String username;
     private String email;
-
 }
 

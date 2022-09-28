@@ -9,12 +9,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class RequestTaskDto {
-
     @JsonProperty("text_content")
     private String textContent;
     private String description;
     private String status;
 
     public abstract String getId();
+
     public abstract String getName();
 }

@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RelationshipValueDto {
-
     private String id;
     private String name;
     private String status;
-
 }
