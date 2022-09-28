@@ -7,12 +7,16 @@ import ru.egartech.sdk.dto.task.serialization.CreateTaskDto;
 import ru.egartech.sdk.dto.task.serialization.RequestTaskDto;
 import ru.egartech.sdk.dto.task.serialization.UpdateTaskDto;
 import ru.egartech.sdk.dto.task.serialization.customfield.request.CustomFieldRequest;
+import ru.egartech.sdk.exception.clickup.ClickUpException;
 
 import java.util.Collection;
 import java.util.List;
 
 /**
- * Интерфейс, объявляющий методы для работы с тасками в ClickUp. Все методы, кроме <b>updateTask()</b>, в точности повторяют собственное API ClickUp, <b>updateTask()</b> имеет более сложную внутреннюю логику, необходимо прочитать документацию к этому методу прежде чем использовать.
+ * Интерфейс, объявляющий методы для работы с тасками в ClickUp.
+ * Все методы, кроме <b>updateTask()</b>, в точности повторяют собственное API ClickUp,
+ * <b>updateTask()</b> имеет более сложную внутреннюю логику, необходимо прочитать документацию
+ * к этому методу прежде чем использовать.
  *
  * @see TaskClientImpl
  */
@@ -25,7 +29,7 @@ public interface TaskClient {
      * @param includeSubtasks если <b>True</b>, то возвратить сабтаски.
      * @see TaskDto
      */
-    TaskDto getTaskById(String id, Boolean includeSubtasks);
+    TaskDto getTaskById(String id, Boolean includeSubtasks) throws ClickUpException;
 
     /**
      * Делает запрос в ClickUp и возвращает {@link TaskDto} по {@link CustomFieldRequest}.
@@ -35,20 +39,25 @@ public interface TaskClient {
      *                           оператора сравнения и значения поля.
      * @see CustomFieldRequest
      */
-    TasksDto getTasksByCustomFields(int listId, Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest);
+    TasksDto getTasksByCustomFields(int listId,
+                                    Boolean includeSubtasks,
+                                    CustomFieldRequest<?>... customFieldRequest) throws ClickUpException;
 
 
     /**
      * <p><b>Опасно!</b></p>
      * <p>
-     * Делает несколько запросов в несколько списков ClickUp и возвращает {@link TaskDto} по {@link CustomFieldRequest}, притом количество запросов: <b>N</b>, где N - количество списокв, в которых может находиться задача.
+     * Делает несколько запросов в несколько списков ClickUp и возвращает {@link TaskDto} по {@link CustomFieldRequest},
+     * притом количество запросов: <b>N</b>, где N - количество списокв, в которых может находиться задача.
      *
      * @param lists              коллекция идентификаторов листов, в котором может находиться задача.
      * @param customFieldRequest объект для поиска по кастом филду, состоящий из: идентификатора поля,
      *                           оператора сравнения и значения поля.
      * @see CustomFieldRequest
      */
-    List<TasksDto> getTasksByCustomFields(Collection<Integer> lists, Boolean includeSubtasks, CustomFieldRequest<?>... customFieldRequest);
+    List<TasksDto> getTasksByCustomFields(Collection<Integer> lists,
+                                          Boolean includeSubtasks,
+                                          CustomFieldRequest<?>... customFieldRequest) throws ClickUpException;
 
     /**
      * Делает запрос в ClickUp и создаёт новую таску, возвращает {@link TaskDto} (только что созданная таска).
@@ -57,15 +66,18 @@ public interface TaskClient {
      * @param createTaskDto объект, на основе не null полей которого будет создаваться таска.
      * @see CreateTaskDto
      */
-    TaskDto createTask(int listId, RequestTaskDto createTaskDto);
+    TaskDto createTask(int listId, RequestTaskDto createTaskDto) throws ClickUpException;
 
     /**
      * <p><b>Опасно!</b></p>
      * <p>
-     * Делает несколько запросов в кликап, для каскадного обновления таски, притом количество запросов: <b>2+N</b> где N - количество кастомных филдов, указанных в {@link UpdateTaskDto}. Запрос может занять какое-то время или исчерпать лимит запосов в кликап (100 в минуту для каждого Free токена).
+     * Делает несколько запросов в кликап, для каскадного обновления таски, притом количество запросов:
+     * <b>2+N</b> где N - количество кастомных филдов, указанных в {@link UpdateTaskDto}.
+     * Запрос может занять какое-то время или исчерпать лимит запосов в кликап (100 в минуту для каждого Free токена).
      *
-     * @param updateTaskDto - объект, на основе не null полей которого будет обновляться таска (остальные поля будут игнорироваться).
+     * @param updateTaskDto - объект, на основе не null полей которого будет обновляться таска
+     *                     (остальные поля будут игнорироваться).
      * @see UpdateTaskDto
      */
-    TaskDto updateTask(UpdateTaskDto updateTaskDto);
+    TaskDto updateTask(UpdateTaskDto updateTaskDto) throws ClickUpException;
 }
