@@ -16,7 +16,7 @@ public abstract class AbstractRestExceptionHandler {
     protected final MessageSourceUtils messageSourceUtils;
 
     protected ApiErrorDto buildMessage(MessageSourceUtils messageSourceUtils,
-                                       RuntimeException e,
+                                       Exception e,
                                        WebRequest webRequest,
                                        String srcToMessageSource,
                                        Object... args) {

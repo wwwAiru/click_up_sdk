@@ -16,7 +16,6 @@ public class ApiErrorDto {
 
     @JsonProperty("class")
     private String propertyClass;
-
     private String message;
     private String milliseconds;
 
