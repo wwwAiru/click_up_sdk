@@ -24,6 +24,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>ru.egartech</groupId>
+            <artifactId>custom-metrics-spring-boot-starter</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <optional>true</optional>
