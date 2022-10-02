@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StatusDto {
-
     private String id;
     private String status;
     private String type;
-
 }

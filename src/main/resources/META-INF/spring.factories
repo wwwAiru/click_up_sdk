@@ -2,4 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   ru.egartech.sdk.config.TaskClientAutoConfiguration,\
   ru.egartech.sdk.config.ListTaskClientAutoConfiguration,\
   ru.egartech.sdk.config.RestTemplateAutoConfiguration,\
-  ru.egartech.sdk.config.CustomFieldClientAutoConfiguration
+  ru.egartech.sdk.config.CustomFieldClientAutoConfiguration,\
+  ru.egartech.sdk.config.MessageSourceUtilsAutoConfiguration,\
+  ru.egartech.sdk.config.ClickUpRestExceptionHandlerAutoConfiguration

@@ -14,13 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DropdownOption {
-
     private String id;
     private String name;
-
     @JsonProperty("orderindex")
     private int orderIndex;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int value;
 

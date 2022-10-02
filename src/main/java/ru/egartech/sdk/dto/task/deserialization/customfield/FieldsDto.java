@@ -24,9 +24,7 @@ public class FieldsDto {
 
     public <T extends CustomField<?>> T customField(String id) {
         CustomField<?> customField = customFields.get(id);
-
         if (customField == null) throw new CustomFieldNotFoundException(id);
-
         return (T) customField;
     }
 }

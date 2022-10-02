@@ -10,11 +10,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class CreateTaskDto extends RequestTaskDto {
-
     @NonNull
     private final String name;
-
     @Builder.Default
     private String id = "ignored";
-
 }

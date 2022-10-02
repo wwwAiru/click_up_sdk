@@ -2,9 +2,11 @@ package ru.egartech.sdk.api.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.CustomFieldClient;
 import ru.egartech.sdk.dto.task.deserialization.customfield.FieldsDto;
+import ru.egartech.sdk.exception.clickup.ClickUpException;
 import ru.egartech.sdk.property.UrlProvider;
 
 import java.util.HashMap;
@@ -19,9 +21,13 @@ public class CustomFieldClientImpl implements CustomFieldClient {
     public FieldsDto getAccessibleCustomFields(int listId) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("list_id", listId);
-        return restTemplate.getForObject(
-                UrlProvider.GET_ACCESSIBLE_CUSTOM_FIELDS.getUrl(),
-                FieldsDto.class,
-                uriVariables);
+        try {
+            return restTemplate.getForObject(
+                    UrlProvider.GET_ACCESSIBLE_CUSTOM_FIELDS.getUrl(),
+                    FieldsDto.class,
+                    uriVariables);
+        } catch (HttpClientErrorException e) {
+            throw new ClickUpException(e);
+        }
     }
 }
