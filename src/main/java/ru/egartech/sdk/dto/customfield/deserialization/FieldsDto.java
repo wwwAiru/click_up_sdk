@@ -1,4 +1,4 @@
-package ru.egartech.sdk.dto.task.deserialization.customfield;
+package ru.egartech.sdk.dto.customfield.deserialization;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
