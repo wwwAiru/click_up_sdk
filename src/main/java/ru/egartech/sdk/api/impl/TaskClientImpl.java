@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.api.CustomFieldClient;
 import ru.egartech.sdk.api.TaskClient;
+import ru.egartech.sdk.dto.customfield.serialization.UpdateFieldDto;
 import ru.egartech.sdk.dto.task.deserialization.TaskDto;
 import ru.egartech.sdk.dto.task.deserialization.TasksDto;
 import ru.egartech.sdk.dto.task.serialization.RequestTaskDto;
@@ -23,6 +25,7 @@ import java.util.*;
 @Primary
 @RequiredArgsConstructor
 public class TaskClientImpl implements TaskClient {
+    private final CustomFieldClient customFieldClient;
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
@@ -115,18 +118,8 @@ public class TaskClientImpl implements TaskClient {
     }
 
     private void updateAllCustomFieldsDto(String taskId, List<BindFieldDto> fields) {
-        fields.forEach(field -> updateCustomField(taskId, field));
-    }
-
-    private void updateCustomField(String taskId, BindFieldDto field) {
-        Map<String, Object> uriVariables = new HashMap<>();
-        uriVariables.put("id", taskId);
-        uriVariables.put("field_id", field.getFieldId());
-        restTemplate.postForObject(
-                UrlProvider.UPDATE_CUSTOM_FIELD.getUrl(),
-                field,
-                Object.class,
-                uriVariables
-        );
+        fields.forEach(field -> customFieldClient.setCustomFieldValue(taskId,
+                field.getFieldId(),
+                UpdateFieldDto.of(field.getValue())));
     }
 }
