@@ -11,8 +11,16 @@ import lombok.experimental.SuperBuilder;
 public abstract class RequestTaskDto {
     @JsonProperty("text_content")
     private String textContent;
+
     private String description;
+
     private String status;
+
+    @JsonProperty("due_date")
+    private String dueDate;
+
+    @JsonProperty("start_date")
+    private String startDate;
 
     public abstract String getId();
 

@@ -47,6 +47,9 @@ public class TaskDto {
     @JsonProperty("date_closed")
     private String dateClosed;
 
+    @JsonProperty("date_start")
+    private String startDate;
+
     @JsonProperty("due_date")
     private String dueDate;
 
