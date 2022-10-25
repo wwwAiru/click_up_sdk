@@ -27,6 +27,7 @@ import ru.egartech.sdk.dto.task.deserialization.customfield.field.text.TextField
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "phone"),
         @JsonSubTypes.Type(value = RelationshipFieldDto.class, name = "list_relationship"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "short_text"),
+        @JsonSubTypes.Type(value = TextFieldDto.class, name = "text"),
         @JsonSubTypes.Type(value = TextFieldDto.class, name = "url"),
 })
 @Data
