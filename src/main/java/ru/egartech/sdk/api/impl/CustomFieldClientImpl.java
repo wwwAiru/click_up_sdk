@@ -33,7 +33,7 @@ public class CustomFieldClientImpl implements CustomFieldClient {
     }
 
     @Override
-    public Object setCustomFieldValue(String taskId, String fieldId, UpdateFieldDto updateFieldDto) {
+    public Object updateCustomFieldValue(String taskId, String fieldId, UpdateFieldDto updateFieldDto) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("task_id", taskId);
         uriVariables.put("field_id", fieldId);

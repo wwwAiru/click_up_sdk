@@ -118,7 +118,7 @@ public class TaskClientImpl implements TaskClient {
     }
 
     private void updateAllCustomFieldsDto(String taskId, List<BindFieldDto> fields) {
-        fields.forEach(field -> customFieldClient.setCustomFieldValue(taskId,
+        fields.forEach(field -> customFieldClient.updateCustomFieldValue(taskId,
                 field.getFieldId(),
                 UpdateFieldDto.of(field.getValue())));
     }
