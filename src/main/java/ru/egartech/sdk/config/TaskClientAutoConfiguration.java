@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.api.CustomFieldClient;
 import ru.egartech.sdk.api.TaskClient;
 import ru.egartech.sdk.api.impl.TaskClientImpl;
 
@@ -16,10 +17,11 @@ import ru.egartech.sdk.api.impl.TaskClientImpl;
 public class TaskClientAutoConfiguration {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final CustomFieldClient customFieldClient;
 
     @Bean
     @ConditionalOnMissingBean
     public TaskClient taskClient() {
-        return new TaskClientImpl(restTemplate, objectMapper);
+        return new TaskClientImpl(customFieldClient, restTemplate, objectMapper);
     }
 }

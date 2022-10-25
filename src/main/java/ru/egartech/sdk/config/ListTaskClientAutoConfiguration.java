@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+import ru.egartech.sdk.api.CustomFieldClient;
 import ru.egartech.sdk.api.ListTaskClient;
 import ru.egartech.sdk.api.impl.ListTaskClientImpl;
 import ru.egartech.sdk.property.SearchListsProperties;
@@ -20,10 +21,11 @@ public class ListTaskClientAutoConfiguration {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final SearchListsProperties searchListsProperties;
+    private final CustomFieldClient customFieldClient;
 
     @Bean
     @ConditionalOnMissingBean
     public ListTaskClient listTaskClient() {
-        return new ListTaskClientImpl(restTemplate, objectMapper, searchListsProperties);
+        return new ListTaskClientImpl(customFieldClient, restTemplate, objectMapper, searchListsProperties);
     }
 }
