@@ -29,7 +29,7 @@ public interface CustomFieldClient {
      * @param updateFieldDto новое значение кастомного поля.
      * @see UpdateFieldDto
      */
-    Object setCustomFieldValue(String taskId, String fieldId, UpdateFieldDto updateFieldDto) throws ClickUpException;
+    Object updateCustomFieldValue(String taskId, String fieldId, UpdateFieldDto updateFieldDto) throws ClickUpException;
 
     /**
      * Делает запрос в ClickUp и удаляет значение кастомного поля.
