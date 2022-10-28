@@ -107,6 +107,20 @@ public class TaskClientImpl implements TaskClient {
         }
     }
 
+    @Override
+    public void deleteTask(String taskId) {
+        try {
+            Map<String, Object> uriVariables = new HashMap<>();
+            uriVariables.put("id", taskId);
+            restTemplate.delete(
+                    UrlProvider.UPDATE_TASK.getUrl(),
+                    uriVariables
+            );
+        } catch (HttpClientErrorException e) {
+            throw new ClickUpException(e);
+        }
+    }
+
     private void updateTaskWithoutCustomFields(RequestTaskDto dto) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("id", dto.getId());
