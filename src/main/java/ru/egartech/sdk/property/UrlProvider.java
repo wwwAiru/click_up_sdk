@@ -14,6 +14,7 @@ public enum UrlProvider {
     SET_CUSTOM_FIELD_VALUE(BASE_URL.getUrl() + "/task/{task_id}/field/{field_id}"),
     DELETE_CUSTOM_FIELD_VALUE(BASE_URL.getUrl() + "/task/{task_id}/field/{field_id}"),
     DELETE_TASK(BASE_URL.getUrl() + "/task/{id}"),
+    CREATE_TASK_ATTACHMENT(BASE_URL.getUrl() + "/task/{id}/attachment"),
     SEARCH_TASKS_BY_CUSTOM_FIELDS_URL(BASE_URL.getUrl() + "/list/{list_id}/task?subtasks={include_subtasks}&custom_fields={custom_field_req}");
 
     @Getter
