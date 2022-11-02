@@ -1,7 +1,6 @@
 package ru.egartech.sdk.api.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.CustomFieldClient;
@@ -13,7 +12,6 @@ import ru.egartech.sdk.property.UrlProvider;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 @RequiredArgsConstructor
 public class CustomFieldClientImpl implements CustomFieldClient {
     private final RestTemplate restTemplate;

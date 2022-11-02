@@ -3,8 +3,6 @@ package ru.egartech.sdk.api.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.CustomFieldClient;
@@ -21,8 +19,6 @@ import ru.egartech.sdk.property.UrlProvider;
 
 import java.util.*;
 
-@Component
-@Primary
 @RequiredArgsConstructor
 public class TaskClientImpl implements TaskClient {
     private final CustomFieldClient customFieldClient;

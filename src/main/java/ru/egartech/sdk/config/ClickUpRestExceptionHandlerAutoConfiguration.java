@@ -10,11 +10,9 @@ import ru.egartech.sdk.util.MessageSourceUtils;
 @Configuration
 @RequiredArgsConstructor
 public class ClickUpRestExceptionHandlerAutoConfiguration {
-    private final MessageSourceUtils messageSourceUtils;
-
     @Bean
     @ConditionalOnMissingBean
-    public ClickUpRestExceptionHandler clickUpRestExceptionHandler() {
+    public ClickUpRestExceptionHandler clickUpRestExceptionHandler(MessageSourceUtils messageSourceUtils) {
         return new ClickUpRestExceptionHandler(messageSourceUtils);
     }
 }

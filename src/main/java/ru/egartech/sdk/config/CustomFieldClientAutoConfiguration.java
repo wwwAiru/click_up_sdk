@@ -11,11 +11,9 @@ import ru.egartech.sdk.api.impl.CustomFieldClientImpl;
 @Configuration
 @RequiredArgsConstructor
 public class CustomFieldClientAutoConfiguration {
-    private final RestTemplate restTemplate;
-
     @Bean
     @ConditionalOnMissingBean
-    public CustomFieldClient customFieldClient() {
+    public CustomFieldClient customFieldClient(RestTemplate restTemplate) {
         return new CustomFieldClientImpl(restTemplate);
     }
 }
