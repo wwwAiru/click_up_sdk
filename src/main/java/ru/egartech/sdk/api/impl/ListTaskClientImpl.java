@@ -1,7 +1,6 @@
 package ru.egartech.sdk.api.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import ru.egartech.sdk.api.CustomFieldClient;
@@ -13,11 +12,13 @@ import ru.egartech.sdk.property.SearchListsProperties;
 
 import java.util.List;
 
-@Component
 public class ListTaskClientImpl extends TaskClientImpl implements ListTaskClient {
     private final SearchListsProperties properties;
 
-    public ListTaskClientImpl(CustomFieldClient customFieldClient, RestTemplate restTemplate, ObjectMapper mapper, SearchListsProperties properties) {
+    public ListTaskClientImpl(CustomFieldClient customFieldClient,
+                              RestTemplate restTemplate,
+                              ObjectMapper mapper,
+                              SearchListsProperties properties) {
         super(customFieldClient, restTemplate, mapper);
         this.properties = properties;
     }

@@ -15,13 +15,11 @@ import ru.egartech.sdk.api.impl.TaskClientImpl;
 @ConditionalOnClass(TaskClient.class)
 @RequiredArgsConstructor
 public class TaskClientAutoConfiguration {
-    private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
-    private final CustomFieldClient customFieldClient;
-
     @Bean
     @ConditionalOnMissingBean
-    public TaskClient taskClient() {
+    public TaskClient taskClient(CustomFieldClient customFieldClient,
+                                 ObjectMapper objectMapper,
+                                 RestTemplate restTemplate) {
         return new TaskClientImpl(customFieldClient, restTemplate, objectMapper);
     }
 }

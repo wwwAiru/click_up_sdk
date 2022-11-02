@@ -10,11 +10,9 @@ import ru.egartech.sdk.util.MessageSourceUtils;
 @Configuration
 @RequiredArgsConstructor
 public class MessageSourceUtilsAutoConfiguration {
-    private final MessageSource messageSource;
-
     @Bean
     @ConditionalOnMissingBean
-    public MessageSourceUtils messageSourceUtils() {
+    public MessageSourceUtils messageSourceUtils(MessageSource messageSource) {
         return new MessageSourceUtils(messageSource);
     }
 }

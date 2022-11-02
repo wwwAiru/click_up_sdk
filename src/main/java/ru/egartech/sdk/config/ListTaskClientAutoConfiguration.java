@@ -18,14 +18,12 @@ import ru.egartech.sdk.property.SearchListsProperties;
 @EnableConfigurationProperties(value = SearchListsProperties.class)
 @RequiredArgsConstructor
 public class ListTaskClientAutoConfiguration {
-    private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
-    private final SearchListsProperties searchListsProperties;
-    private final CustomFieldClient customFieldClient;
-
     @Bean
     @ConditionalOnMissingBean
-    public ListTaskClient listTaskClient() {
+    public ListTaskClient listTaskClient(CustomFieldClient customFieldClient,
+                                         SearchListsProperties searchListsProperties,
+                                         ObjectMapper objectMapper,
+                                         RestTemplate restTemplate) {
         return new ListTaskClientImpl(customFieldClient, restTemplate, objectMapper, searchListsProperties);
     }
 }

@@ -80,4 +80,12 @@ public interface TaskClient {
      * @see UpdateTaskDto
      */
     TaskDto updateTask(UpdateTaskDto updateTaskDto) throws ClickUpException;
+
+    /**
+     * Делает запрос в ClickUp и удаляет таску с указанным taskId.
+     *
+     * @param taskId - taskId для удаления задачи.
+     * @see TaskClient#createTask(int, RequestTaskDto)
+     */
+    void deleteTask(String taskId);
 }

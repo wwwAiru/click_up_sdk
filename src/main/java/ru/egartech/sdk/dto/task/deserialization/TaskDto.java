@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.egartech.sdk.dto.attachment.deserialization.AttachmentDto;
 import ru.egartech.sdk.dto.task.deserialization.customfield.assigner.AssignerDto;
 import ru.egartech.sdk.dto.task.deserialization.customfield.deserializer.CustomFieldStdConverter;
 import ru.egartech.sdk.dto.task.deserialization.customfield.field.CustomField;
@@ -64,6 +65,9 @@ public class TaskDto {
 
     @JsonProperty("list")
     private ListDto list;
+
+    @JsonProperty("attachments")
+    private List<AttachmentDto> attachments;
 
     @JsonProperty("custom_fields")
     @JsonDeserialize(converter = CustomFieldStdConverter.class)
